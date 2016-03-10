@@ -9,6 +9,8 @@ set (CMAKE_INSTALL_PREFIX .)
 include_directories (
 	base/
 )
+#j'aime bien les commentaires
+
 
 add_subdirectory (code)
 add_subdirectory (jeu)
