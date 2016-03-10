@@ -173,9 +173,7 @@ void move(int piece, char direction, int distance, int a[TAILLE][TAILLE])
 
 bool game_not_over( int a[TAILLE][TAILLE])
 {
-    if (a[3][6]==1)
-        return true;
-    return false;
+  return (a[3][6]==1);
 }
 int main()
 {

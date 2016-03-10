@@ -7,11 +7,10 @@ add_definitions (-std=c99 -g)
 set (CMAKE_INSTALL_PREFIX .)
 
 include_directories (
-	base/
+	include/
 )
 #j'aime bien les commentaires
 
 
-add_subdirectory (code)
-add_subdirectory (jeu)
+add_subdirectory (src)
 add_subdirectory (test)
