@@ -3,6 +3,10 @@
 
 #include "piece.h"
 
+#define TAILLE 6
+#define TAILLE_TROP_IMPORTANTE EXIT_FAILURE
+#define MOUVEMENT_INCORRECT EXIT_FAILURE
+
 struct piece_s{
     int x;
     int y;
@@ -31,7 +35,37 @@ void copy_piece (cpiece src, piece dst){ /* deferencing pointer to incomplete ty
 }
 
 void move_piece (piece p, dir d, int distance){
-//à faire
+  if (p->horizontal == true){
+    if (d == UP || d == DOWN)
+      return MOUVEMENT_INCORRECT;
+    if (d == RIGHT){
+      if ((p->small == true && p->x+distance+1 > TAILLE) ||  (p->small == false && p->x+distance+2 > TAILLE))
+          return TAILLE_TROP_IMPORTANTE;
+        else
+          p->x += distance;
+    }else{
+        if (p->x-distance < 0)
+          return TAILLE_TROP_IMPORTANTE;
+        else
+          p->x -= distance;
+    }
+  }else{
+    if (p->horizontal == false){
+      if (d == LEFT || d == RIGHT)
+        return MOUVEMENT_INCORRECT;
+      if (d == UP){
+        if ((p->small == true && p->y+distance+1 > TAILLE) ||  (p->small == false && p->y+distance+2 > TAILLE))
+          return TAILLE_TROP_IMPORTANTE;
+        else
+          p->y += distance;
+      }else{
+        if (p->y-distance < 0)
+          return TAILLE_TROP_IMPORTANTE;
+        else
+          p->y -= distance;
+      }
+    }
+  }
 }
 
 bool intersect(cpiece p1, cpiece p2){
