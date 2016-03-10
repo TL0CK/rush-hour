@@ -33,7 +33,7 @@
 
 #CMake files
 *~
-./build/*
-./build
+build/*
+build
 src/*~
 test/*~
