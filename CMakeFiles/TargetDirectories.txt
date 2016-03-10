@@ -1,2 +1,0 @@
-/net/cremi/vviguier/projet_rush_hour/rush-hour/test/CMakeFiles/test_piece.dir
-/net/cremi/vviguier/projet_rush_hour/rush-hour/src/CMakeFiles/game.dir
