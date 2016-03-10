@@ -4,13 +4,15 @@ project (rush_hour)
 
 add_definitions (-std=c99 -g)
 
-set (CMAKE_INSTALL_PREFIX .)
 
 include_directories (
 	include/
 )
-#j'aime bien les commentaires
 
+add_library (game src/game.c src/piece.c)
+install (TARGETS game ARCHIVE DESTINATION build)
 
-add_subdirectory (src)
-add_subdirectory (test)
+add_executable (test_piece test/test_piece1.c)
+target_link_libraries (test_piece game)
+install (TARGETS test_piece RUNTIME DESTINATION ..)
+

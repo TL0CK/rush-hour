@@ -121,3 +121,42 @@ bool test_move() {
 
     }
   tear_down();
+  delete_piece(p);
+  return result;
+  return false;
+}
+
+
+bool test_copy() {
+  piece p = new_piece_rh(0, 0, true, true);
+  bool result = true;
+  set_up();
+  for (int i = 0 ; i < NB_PIECES; i++) {
+    copy_piece(pieces[i],p);
+    result = result && test_equality_int(get_height(pieces[i]), get_height(p), "copy get_height");
+    result = result && test_equality_int(get_width(pieces[i]), get_width(p), "copy get_width");
+    result = result && test_equality_int(get_x(pieces[i]), get_x(p), "copy get_x");
+    result = result && test_equality_int(get_y(pieces[i]), get_y(p), "copy get_y");
+    result = result && test_equality_bool(is_horizontal(pieces[i]), is_horizontal(p), "copy is_horizontal");
+  }
+  tear_down();
+  delete_piece(p);
+  return result;
+}
+
+int main (int argc, char *argv[])
+{
+  bool result= true;
+
+  result = result && test_equality_bool(true, test_new_piece(), "new_piece");
+  result = result && test_equality_bool(true, test_intersect(), "intersect");
+  result = result && test_equality_bool(true, test_move(), "move");
+  result = result && test_equality_bool(true, test_copy(), "copy");
+
+  if (result) {
+    printf("Youpi !\n");
+    return EXIT_SUCCESS;
+  }
+  else
+    return EXIT_FAILURE;
+}

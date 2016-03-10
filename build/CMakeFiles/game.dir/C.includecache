@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/game.h
+stdbool.h
+-
+piece.h
+../include/piece.h
+
+../include/piece.h
+stdbool.h
+-
+
+/net/cremi/vviguier/projet_rush_hour/rush-hour/src/game.c
+game.h
+/net/cremi/vviguier/projet_rush_hour/rush-hour/src/game.h
+piece.h
+/net/cremi/vviguier/projet_rush_hour/rush-hour/src/piece.h
+stdio.h
+-
+stdlib.h
+-
+
+/net/cremi/vviguier/projet_rush_hour/rush-hour/src/piece.c
+stdlib.h
+-
+stdio.h
+-
+piece.h
+/net/cremi/vviguier/projet_rush_hour/rush-hour/src/piece.h
+
