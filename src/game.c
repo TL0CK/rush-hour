@@ -19,7 +19,7 @@ game new_game_hr (int nb_pieces, piece *pieces){
   g->height = 6;
 
   g->game_board = malloc(sizeof(int)*g->width);
-  for(int i= 0; 1<TAILLE; ++i)
+  for(int i= 0; 1<6; ++i)
     g->game_board[i] = malloc(sizeof(int)*g->height);
 
   g->game_board[0][3] = 0;
@@ -37,7 +37,7 @@ game new_game (int width, int height, int nb_pieces, piece *pieces){
   g->height = height;
 
   g->game_board = malloc(sizeof(int)*g->width);
-  for(int i= 0; 1<TAILLE; ++i)
+  for(int i= 0; 1<g->width; ++i)
     g->game_board[i] = malloc(sizeof(int)*g->height);
 
   g->game_board[0][3] = 0;
@@ -110,8 +110,8 @@ cpiece game_piece(cgame g, int piece_num){
 bool play_move(game g, int piece_num, dir d, int distance){
     //localisation piece
   int b=0 , c=0;
-  for (int i=0; i<TAILLE; ++i){
-    for (int j=0; j<TAILLE; ++j){
+  for (int i=0; i<g->width; ++i){
+    for (int j=0; j<g->height; ++j){
       if (g->game_board[i][j] == piece_num){
         b=i;
         c=j;
