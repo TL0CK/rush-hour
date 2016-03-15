@@ -4,9 +4,6 @@ project (rush_hour)
 
 add_definitions (-std=c99 -g)
 
-#coucou
-#salut c:
-
 include_directories (
 	include/
 )
