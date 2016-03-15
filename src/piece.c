@@ -4,8 +4,6 @@
 #include "piece.h"
 
 #define TAILLE 6
-#define TAILLE_TROP_IMPORTANTE EXIT_FAILURE
-#define MOUVEMENT_INCORRECT EXIT_FAILURE
 
 struct piece_s{
     int x;
