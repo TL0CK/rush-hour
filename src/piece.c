@@ -35,44 +35,68 @@ void copy_piece (cpiece src, piece dst){ /* deferencing pointer to incomplete ty
 }
 
 void move_piece (piece p, dir d, int distance){
-  if (p->horizontal == true){
-    if (d == UP || d == DOWN)
-      return MOUVEMENT_INCORRECT;
-    if (d == RIGHT){
-      if ((p->small == true && p->x+distance+1 > TAILLE) ||  (p->small == false && p->x+distance+2 > TAILLE))
-          return TAILLE_TROP_IMPORTANTE;
-        else
-          p->x += distance;
-    }else{
-        if (p->x-distance < 0)
-          return TAILLE_TROP_IMPORTANTE;
-        else
-          p->x -= distance;
-    }
-  }else{
-    if (p->horizontal == false){
-      if (d == LEFT || d == RIGHT)
-        return MOUVEMENT_INCORRECT;
-      if (d == UP){
-        if ((p->small == true && p->y+distance+1 > TAILLE) ||  (p->small == false && p->y+distance+2 > TAILLE))
-          return TAILLE_TROP_IMPORTANTE;
-        else
-          p->y += distance;
-      }else{
-        if (p->y-distance < 0)
-          return TAILLE_TROP_IMPORTANTE;
-        else
-          p->y -= distance;
+  switch(d){
+    
+    case UP :
+      if (p->horizontal){
+        break;
       }
-    }
+      p->y+=distance;
+    case LEFT :
+      if (!p->horizontal){
+        break;
+      }
+      p->x-=distance;
+    case DOWN :
+      if (p->horizontal){
+        break;
+      }
+      p->y-=distance;
+    case RIGHT :
+      if (!p->horizontal){
+        break;
+      }
+      p->x+=distance;
+    default :
+      break;
   }
 }
 
 bool intersect(cpiece p1, cpiece p2){
-return false;
-//à faire
+  if (p1->horizontal && p2->horizontal){
+    for (int i =0;i<get_width(p1);i++){
+      for (int j=0;j<get_width(p2);j++){
+        if ((p1->x)+i==(p2->x)+j && p1->y==p2->y)
+          return true;
+      }   
+    }
+  } 
+  if (p1->horizontal && !p2->horizontal){
+    for (int i =0;i<get_width(p1);i++){
+      for (int j=0;j<get_height(p2);j++){
+        if ((p1->x)+i==p2->x && p1->y==(p2->y)+j)
+          return true;
+      }   
+    }
+  } 
+  else if (!p1->horizontal && !p2->horizontal){
+    for (int i =0;i<get_height(p1);i++){
+      for (int j=0;j<get_height(p2);j++){
+        if (p1->x==p2->x && (p1->y)+i==(p2->y)+j)
+          return true;
+      }   
+    }
+  }
+  else if (!p1->horizontal && p2->horizontal){
+    for (int i =0;i<get_height(p1);i++){
+      for (int j=0;j<get_width(p2);j++){
+        if (p1->x==(p2->x)+j && (p1->y)+i==p2->y)
+          return true;
+      }   
+    }
+  }
+  return false;
 }
-
 
 int get_x(cpiece p){
   return p->x;

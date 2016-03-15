@@ -9,6 +9,8 @@ struct game_s{
   int **game_board; //tableau a initialiser depuis en bas a gauche, la il est en haut a gauche, aka la case en basa
     int nb_pieces;   //droite doit etre 0 0 et la c'est 5 0
     int nb_moves;
+    int height ;
+    int width ;
     piece *piece;
 };
 
@@ -27,6 +29,21 @@ game new_game_hr (int nb_pieces, piece *pieces){
   return g;
 }
 
+void copy_game(cgame src, game dst){
+    dst->nb_moves=src->nb_moves;
+    dst->height=src->height;
+    dst->width=src->width;
+    dst->nb_pieces=src->nb_pieces;
+    for (int i =0; i<dst->nb_pieces;++i){
+        copy_piece(src->piece[i],dst->piece[i]);       //preserve piece source
+    }
+    for (int i=0;i<src->width;++i){
+        for (int j=0;j<src->height;++i){
+            dst->game_board[i][j]=src->game_board[i][j];
+        }
+    }
+}
+
 void delete_game (game g){
     free(g);
 }
@@ -36,6 +53,9 @@ int game_nb_pieces(cgame g){
   return g->nb_pieces;
 }
 
+int game_nb_moves(cgame g){
+  return g->nb_moves;
+}
 
 bool game_over_hr(cgame g){
     if (g->game_board[4][3]==0)
@@ -43,6 +63,9 @@ bool game_over_hr(cgame g){
     return false;
 }
 
+cpiece game_piece(cgame g, int piece_num){
+    return g->piece[piece_num];
+}
 
 bool play_move(game g, int piece_num, dir d, int distance){
     //localisation piece
@@ -57,6 +80,7 @@ bool play_move(game g, int piece_num, dir d, int distance){
     }
   }
   printf(" b: %d, c: %d \n", b, c);
+  
   //test piece small horizontal
   bool small, horizontal;
   if (g->game_board[b+2][c]!=piece_num && g->game_board[b][c+2]!=piece_num)
@@ -132,6 +156,4 @@ bool play_move(game g, int piece_num, dir d, int distance){
 }
 
 
-int game_nb_moves(cgame g){
-  return g->nb_moves;
-}
+

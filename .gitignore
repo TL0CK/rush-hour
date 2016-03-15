@@ -36,3 +36,10 @@
 build/
 src/*~
 test/*~
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/compile_commands.json
+/test_piece
+/Makefile
+!/build/
