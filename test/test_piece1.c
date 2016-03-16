@@ -155,8 +155,11 @@ int main (int argc, char *argv[])
   result = result && test_equality_bool(true, test_move(), "move");
   result = result && test_equality_bool(true, test_copy(), "copy");
 
-  if (result)
+  if (result){
+    printf("Youpi !\n");
     return EXIT_SUCCESS;
-  else
+  }
+  else{
     return EXIT_FAILURE;
+  }
 }

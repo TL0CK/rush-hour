@@ -127,13 +127,28 @@ bool intersect(cpiece p1, cpiece p2){
 }
 */
 
-bool intersect(cpiece p1, cpiece p2){
-  if ( p1 == p2 )
+int max(int a , int b){
+  if (a<b)
+    return b;
+  return a;
+}
+
+int min(int a , int b){
+  if (a<b)
+    return a;
+  return b;
+}
+
+bool intersect(cpiece p1 , cpiece p2){
+  int maxgauche = max(get_x(p1),get_x(p2));
+  int mindroit = min(get_x(p1) + get_width(p1) , get_x(p2) + get_width(p2));
+  int maxbas = max(get_y(p1) , get_y(p2));
+  int minhaut = min(get_y(p1) + get_height(p1) , get_y(p2) + get_height(p2));
+  
+  if ((maxgauche < mindroit) && (maxbas < minhaut))
     return true;
-  for (int i =0;i<get_width(p1);i++){
-      for (int j=0;j<get_height(p2);j++){
-        if ((p1->x)+i==p2->x && p1->y==(p2->y)+j)
-          return true;
+  return false;
+}
 
 int get_x(cpiece p){
   return p->x;
