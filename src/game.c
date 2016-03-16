@@ -19,6 +19,7 @@ game new_game_hr (int nb_pieces, piece *pieces){
   g->height = 6;
 
   g->game_board = malloc(sizeof(int)*g->width);
+
   for(int i= 0; 1< g->width; ++i)
     g->game_board[i] = malloc(sizeof(int)*g->height);
 
@@ -37,6 +38,7 @@ game new_game (int width, int height, int nb_pieces, piece *pieces){
   g->height = height;
 
   g->game_board = malloc(sizeof(int)*g->width);
+
   for(int i= 0; 1< g->width; ++i)
     g->game_board[i] = malloc(sizeof(int)*g->height);
 
