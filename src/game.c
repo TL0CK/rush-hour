@@ -57,7 +57,7 @@ game new_game(int width, int height, int nb_pieces, piece *pieces){
   return g;
 }
 
-// Take all parameter of dst and copy them in src
+// Take all parameter of dst and copy all of them in src
 void copy_game(cgame src, game dst){
     dst->nb_moves = src->nb_moves;
     dst->height = src->height;
@@ -142,14 +142,12 @@ bool play_move(game g, int piece_num, dir d, int distance){
   }
   printf(" b: %d, c: %d \n", b, c);
   
-  //test piece small horizontal
   bool small, horizontal;
   if (g->game_board[b+2][c]!=piece_num && g->game_board[b][c+2]!=piece_num)
     small=true;
   if (g->game_board[b][c+1]==piece_num)
     horizontal=true;
 
-    //mouvement piece
   if (small == true && horizontal == true){
     if(d == 'l'){
       g->game_board[b][c] = 0;
