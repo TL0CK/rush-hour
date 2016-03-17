@@ -11,71 +11,59 @@
 
 int a[TAILLE][TAILLE];
 
-int new_board(int a[TAILLE][TAILLE]){
-    int i, j, k;
-    for (i = 0; i<TAILLE; ++i)
-    printf("+---");
-    printf("+\n");
-    for (i = 0; i<TAILLE; ++i){
-        for(j = 0; j<TAILLE; ++j)
-            printf("| %d ", a[i][j])
-        printf("|\n");
-        for(k = 0; k<TAILLE; ++k)
-            printf("+---");
-        printf("+\n");
-    }
-}
+int main(){
+  int choix = -1;
+  int p = -1;
+  char direction = n;
+  int distance = 0;
 
+  while (choix != 0 || choix != 1){
+    printf("\n Sélection du jeu \n\n 0 pour Rush Hour, 1 pour l'Ane Rouge \n");
+    scanf("%d", &choix);
+  }
 
-void put_piece(int a[TAILLE][TAILLE]){
-    srand(time(NULL));
-    int i = 2+NB_PIECES;
-    while (i>2){
-        int x = rand()%5;
-        int y = rand()%5;
-        int small = rand()%2;
-        int horizontal = rand()%2;
-        if (horizontal == 1 && small == 1 && y != 3 && a[x][y] == 0 && a[x+1][y] == 0){
-            a[x][y] = i;
-            a[x+1][y] = i;
-            i--;
-        }
-        if (horizontal == 1 && small == 0 && y != 3 && x<5 && y<5 && a[x][y] == 0 && a[x+1][y] == 0 && a[x+2][y] == 0){
-            a[x][y] = i;
-            a[x+1][y] = i;
-            a[x+2][y] = i;
-            i--;
-        }
-        if (horizontal == 0 && small == 1 && a[x][y] == 0 && a[x][y+1] == 0){
-            a[x][y] = i;
-            a[x][y+1] = i;
-            i--;
-        }
-        if (horizontal == 0 && small == 0 && x<5 && y<5 && a[x][y] == 0 && a[x][y+1] == 0 && a[x][y+2] == 0){
-            a[x][y]=i;
-            a[x][y+1]=i;
-            a[x][y+2]=i;
-            i--;
-        }
+  if (choix == 0){
+    printf("---| RUSH HOUR |--- \n\n");
+    game g = new_game_hr(NB_PIECE, pieces);
+    new_board(g);
+    while (game_over_hr(g) == false){
+      while (p<0 || p>NB_PIECE){
+        printf("Sélectionnez une pièce.\n");
+        scanf("%d", &p);
+      }
+      printf("Vous avez sélectionnez %d.\n Proposez une direction à parcourir: LEFT, UP, RIGHT, DOWN\n", p);
+      scanf("%s", &direction);
+      while ((direction != L && direction != U && direction != R && direction != P) || can_move(p, direction)){
+        printf("Direction invalide.\n Proposez une direction à parcourir: LEFT, UP, RIGHT, DOWN\n", p);
+        scanf("%s", &direction);
+      }
+      printf("Proposez une distance à parcourir\n", p);
+      scanf("%d", &distance);  
     }
-}
+  }
 
-int main()
-{
-    a[3][0]=1;
-    a[3][1]=1;
-    int piece, distance;
-    char direction;
-    printf("\n Actualisation du jeu \n \n");
-    put_piece(a);
-    new_board(a);
-    while (game_over(a) == false){
-      printf("Donnez les specificitées du mouvement: n°piece 1ere lettre du mouvement distance ");
-      scanf("%d %s %d", &piece, &direction, &distance );
-      move(piece, direction, distance, a);
-      new_board(a);
+  if (choix == 1){
+    printf("~~~{ L'Ane Rouge }~~~\n\n");
+    printf ("Sélectionnez la largeur, puis la hauteur du tableau.\n");
+    while (width<6 || width>10 || height<6 || height>10){
+      printf ("Limite comprise entre 6 et 10.\n");
+      scanf("%d %d", %width, %height);
     }
-    new_board(a);
-    printf("Bravo! \n");
-    return 0;
+    game g = new_game(width, height, 4, pieces);
+    new_board(g);
+    while (game_over_hr(g) == false){
+      while (p<0 || p>NB_PIECE){
+        printf("Sélectionnez une pièce.\n");
+        scanf("%d", &p);
+      }
+      printf("Vous avez sélectionnez %d.\n Proposez une direction à parcourir: LEFT, UP, RIGHT, DOWN\n", p);
+      scanf("%s", &direction);
+      while (direction != L && direction != U && direction != R && direction != P){
+        printf("Direction invalide.\n Proposez une direction à parcourir: LEFT, UP, RIGHT, DOWN\n", p);
+        scanf("%s", &direction);
+      }
+      printf("Proposez une distance à parcourir\n", p);
+      scanf("%d", &distance);
+    }
+  }
 }
