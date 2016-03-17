@@ -89,3 +89,24 @@ bool test_play_move(){
   tear_down();
   return result;
 }
+
+
+int main (int argc, char *argv[])
+{
+  bool result= true;
+
+  result = result && test_equality_bool(true, test_new_game_hr(), "new_game_hr");
+  result = result && test_equality_bool(true, test_new_game(), "new_game");
+  result = result && test_equality_bool(true, test_game_square(), "game_square");
+  result = result && test_equality_bool(true, test_game_over(), "game_over");
+  result = result && test_equality_bool(true, test_play_move(), "play_move");
+
+  if (result){
+    printf("Youpi !\n");
+    return EXIT_SUCCESS;
+  }
+  else{
+    return EXIT_FAILURE;
+  }
+}
+

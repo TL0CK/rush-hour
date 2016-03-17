@@ -3,7 +3,6 @@
 
 #include "piece.h"
 
-#define TAILLE 6
 
 struct piece_s{
     int x;
@@ -87,45 +86,6 @@ void move_piece (piece p, dir d, int distance){
       break;
   }
 }
-
-
-/*
-bool intersect(cpiece p1, cpiece p2){
-  if (p1->horizontal && p2->horizontal){
-    for (int i =0;i<get_width(p1);i++){
-      for (int j=0;j<get_width(p2);j++){
-        if ((p1->x)+i==(p2->x)+j && p1->y==p2->y)
-          return true;
-      }   
-    }
-  } 
-  if (p1->horizontal && !p2->horizontal){
-    for (int i =0;i<get_width(p1);i++){
-      for (int j=0;j<get_height(p2);j++){
-        if ((p1->x)+i==p2->x && p1->y==(p2->y)+j)
-          return true;
-      }   
-    }
-  } 
-  else if (!p1->horizontal && !p2->horizontal){
-    for (int i =0;i<get_height(p1);i++){
-      for (int j=0;j<get_height(p2);j++){
-        if (p1->x==p2->x && (p1->y)+i==(p2->y)+j)
-          return true;
-      }   
-    }
-  }
-  else if (!p1->horizontal && p2->horizontal){
-    for (int i =0;i<get_height(p1);i++){
-      for (int j=0;j<get_width(p2);j++){
-        if (p1->x==(p2->x)+j && (p1->y)+i==p2->y)
-          return true;
-      }   
-    }
-  }
-  return false;
-}
-*/
 
 int max(int a , int b){
   if (a<b)

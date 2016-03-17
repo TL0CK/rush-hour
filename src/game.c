@@ -1,10 +1,12 @@
-#include "game.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "game.h"
+
 struct game_s{
-  int **game_board; //tableau a initialiser depuis en bas a gauche, la il est en haut a gauche, aka la case en basa
+    int **game_board; //tableau a initialiser depuis en bas a gauche, la il est en haut a gauche, aka la case en basa
     int nb_pieces;   //droite doit etre 0 0 et la c'est 5 0
     int nb_moves;
     int height ;
@@ -17,13 +19,18 @@ game new_game_hr (int nb_pieces, piece *pieces){
  
   g->width = 6;
   g->height = 6;
-
+  /*
+  g->game_board = new_game_board(pieces);
+  
+ 
   g->game_board = malloc(sizeof(int)*g->width);
-
   for(int i= 0; 1< g->width; ++i)
     g->game_board[i] = malloc(sizeof(int)*g->height);
 
+ 
   g->game_board[0][3] = 0;
+  */
+  
   g->nb_pieces = nb_pieces;
   g->nb_moves = 0;
   g->piece = pieces;

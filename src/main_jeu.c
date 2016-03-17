@@ -1,29 +1,42 @@
-#include <stdlib.h>
+#include <stdlib.h> 
 #include <time.h>
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "game.h"
+#include "piece.h"
+
 #define TAILLE 6
 #define NB_PIECES 4
 
-int a[TAILLE][TAILLE];
-
-int new_board(int a[TAILLE][TAILLE])
-{
+int new_board(game g){
     int i,j,k;
-    for (i=0;i<TAILLE;i++)
-    printf("+---");
-    printf("+\n");
-    for (i=0;i<TAILLE;i++)
-    
-        for(j=0;j<TAILLE;j++)
-            printf("| %d ", a[i][j])
+    int w = game_width(g) , h = game_height(g);
+    for (i=0;i < w;i++){
+      printf("+---");
+      printf("+\n");
+    }
+    for (i=0;i< w; i++){
+        for(j=0;j< h ; j++){
+            printf("| %d ", game_square_piece (g, i, j));
+        }
         printf("|\n");
-        for(k=0;k<TAILLE;k++)
+        for(k=0;k < h;k++){
             printf("+---");
+        }
         printf("+\n");
     }
 }
+
+int main(){
+    game g = new_game_hr(4,pieces);
+    new_board(g);
+    return EXIT_SUCCESS;
+}
+
+/*
+
+void set_piece(int game_board
 
 
 void placer_piece(int a[TAILLE][TAILLE])
@@ -194,3 +207,5 @@ int main()
     printf("Bravo! \n");
     return 0;
 }
+
+*/
