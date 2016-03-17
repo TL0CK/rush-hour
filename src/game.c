@@ -4,14 +4,17 @@
 #include <stdbool.h>
 
 struct game_s{
-  int **game_board; //tableau a initialiser depuis en bas a gauche, la il est en haut a gauche, aka la case en basa
-    int nb_pieces;   //droite doit etre 0 0 et la c'est 5 0
+  int **game_board;
+    int nb_pieces;
     int nb_moves;
-    int height ;
-    int width ;
+    int height;
+    int width;
     piece *piece;
 };
 
+/* Create a board for the game "Rush Hour" and allocate memory
+   Reset nb_move, assign nb_pieces to g and put *pieces on the board
+   Create the first piece at [0][3] in the board*/
 game new_game_hr (int nb_pieces, piece *pieces){
   game g = malloc(sizeof(struct game_s));
  
@@ -31,7 +34,11 @@ game new_game_hr (int nb_pieces, piece *pieces){
   return g;
 }
 
-game new_game (int width, int height, int nb_pieces, piece *pieces){
+/* Create a board at the dimension (width, height) for the game "Ane Rouge" and allocate memory
+   Reset nb_move, assign nb_pieces to g and put *pieces on the board
+   Create the first piece at [0][3] in the board*/
+
+game new_game(int width, int height, int nb_pieces, piece *pieces){
   game g = malloc(sizeof(struct game_s));
  
   g->width = width;
@@ -50,42 +57,49 @@ game new_game (int width, int height, int nb_pieces, piece *pieces){
   return g;
 }
 
+// Take all parameter of dst and copy them in src
 void copy_game(cgame src, game dst){
-    dst->nb_moves=src->nb_moves;
-    dst->height=src->height;
-    dst->width=src->width;
-    dst->nb_pieces=src->nb_pieces;
-    for (int i =0; i<dst->nb_pieces;++i){
-        copy_piece(src->piece[i],dst->piece[i]);       //preserve piece source
+    dst->nb_moves = src->nb_moves;
+    dst->height = src->height;
+    dst->width = src->width;
+    dst->nb_pieces = src->nb_pieces;
+    for (int i = 0; i<dst->nb_pieces; ++i){
+        copy_piece(src->piece[i], dst->piece[i]);
     }
-    for (int i=0;i<src->width;++i){
-        for (int j=0;j<src->height;++i){
-            dst->game_board[i][j]=src->game_board[i][j];
+    for (int i = 0; i<src->width; ++i){
+        for (int j = 0; j<src->height; ++i){
+            dst->game_board[i][j] = src->game_board[i][j];
         }
     }
 }
 
+// Free memory allocated to g
 void delete_game (game g){
     free(g);
 }
 
-
+// Return nb_piece of g
 int game_nb_pieces(cgame g){
   return g->nb_pieces;
 }
 
+// Return nb_move of g
 int game_nb_moves(cgame g){
   return g->nb_moves;
 }
 
+// Return the width of the g's board
 int game_width(cgame g){
   return g->width;
 }
 
+// Return the height of the g's board
 int game_height(cgame g){
   return g->height;
 }
 
+/* Return the number of piece located in the square ((0,0) , (x,y))
+   If this square hasn't any piece, return -1 */
 int game_square_piece (game g, int x, int y){
   int nb_piece = 0;
   for (int i = 0; i<x; ++i){
@@ -99,24 +113,29 @@ int game_square_piece (game g, int x, int y){
   return nb_piece;
 }
 
+/* Test if the game is over
+   True if the game is won, false if not */
 bool game_over_hr(cgame g){
-    if (g->game_board[4][3]==0)
+    if (g->game_board[4][3] == 0)
         return true;
     return false;
 }
 
+// Return the number of piece_num located in g
 cpiece game_piece(cgame g, int piece_num){
     return g->piece[piece_num];
 }
 
+/* Find the piece_num in the game's board of g
+   Then test if this piece can move in the direction d
+   Move the piece in this direction with the distance of parameter */
 bool play_move(game g, int piece_num, dir d, int distance){
-    //localisation piece
-  int b=0 , c=0;
-  for (int i=0; i<g->width; ++i){
-    for (int j=0; j<g->height; ++j){
+  int b = 0 , c = 0;
+  for (int i = 0; i<g->width; ++i){
+    for (int j = 0; j<g->height; ++j){
       if (g->game_board[i][j] == piece_num){
-        b=i;
-        c=j;
+        b = i;
+        c = j;
         break;
       }
     }
