@@ -94,6 +94,7 @@ int get_width(cpiece p);
  * @brief Returns true if the piece is
  */
 bool is_horizontal(cpiece p);
+bool can_move (piece p , dir d);
 
 /////////////////// VERSION 2 /////////////////////////////
 

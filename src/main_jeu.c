@@ -6,206 +6,172 @@
 #include "game.h"
 #include "piece.h"
 
+
 #define TAILLE 6
 #define NB_PIECES 4
 
-int new_board(game g){
-    int i,j,k;
-    int w = game_width(g) , h = game_height(g);
-    for (i=0;i < w;i++){
+piece pieces[NB_PIECES];
+
+void set_up() {
+  pieces[0] = new_piece_rh(3, 3, true, true);
+  pieces[1] = new_piece_rh(3, 0, true, false);
+  pieces[2] = new_piece_rh(4, 1, true, true);
+  pieces[3] = new_piece_rh(5, 3, false, false);
+}
+
+void set_board(int width , int height){
+  int game_board[width][height];
+  for (int x = 0 ; x < width ; x++){
+    for (int y = 0 ; y < height ; y++){
+      game_board[x][y] = '.';
+    }
+  }
+  for (int i = 0 ; i < NB_PIECES ; i++){
+    piece p;
+    p = pieces[i];
+    for (int j = get_x(p) ; j < get_width(p) ; j++){
+      for (int k = get_y(p) ; k < get_height(p) ; k++){
+        game_board[j][k] = i;
+      }
+    }
+  }
+}
+
+void new_board(game g , int width , int height , int game_board[width][height]){
+
+  int i,j,k;
+  
+  for (i=0;i<width;i++){
+    printf("+---");
+  }
+  printf("+\n");
+  for (i=0;i < width;i++) {
+    for(j=0;j < height;j++) {
+      printf("| %d ", game_board[i][j]);
+    }
+    printf("|\n");
+    for(k=0;k<width;k++){
       printf("+---");
-      printf("+\n");
     }
-    for (i=0;i< w; i++){
-        for(j=0;j< h ; j++){
-            printf("| %d ", game_square_piece (g, i, j));
-        }
-        printf("|\n");
-        for(k=0;k < h;k++){
-            printf("+---");
-        }
-        printf("+\n");
-    }
+    printf("+\n");
+  }
 }
 
-int main(){
-    game g = new_game_hr(4,pieces);
-    new_board(g);
-    return EXIT_SUCCESS;
+int main() {
+  set_up();
+  int choix = -1;
+  int p = -1;
+  char direction = 'n';
+  int distance = 0;
+  int width = 6;
+  int height = 6;
+  int game_board[width][height];
+
+  char rejouer = 'n';
+  bool fin_jeu = false;
+
+  while (fin_jeu == false) {
+    while (choix != 0 || choix != 1) {
+      printf("\n Selection du jeu \n\n 0 pour Rush Hour, 1 pour l'Ane Rouge \n");
+      scanf("%d", &choix);
+    }
+    if (choix == 0) {
+      printf("---| RUSH HOUR |--- \n\n");
+      game g = new_game_hr(NB_PIECES, pieces);
+      set_board(width , height);
+      new_board(g , width , height , game_board[width][height]);
+      while (game_over_hr(g) == false) {
+        while (p<0 || p>=NB_PIECES) {
+          printf("Sélectionnez une pièce.\n");
+          scanf("%d", &p);
+        }
+        printf("Vous avez sélectionnez %d.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
+        scanf("%s", &direction);
+        while ((direction != 'L' && direction != 'U' && direction != 'R' && direction != 'P') || (can_move(pieces[p], direction) != true)) {
+          printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
+          scanf("%s", &direction);
+        }
+        printf("Proposez une distance à parcourir.\n");
+        scanf("%d", &distance);
+        while (play_move(g, p, direction, distance) == false) {
+          printf("Distance invalide. Proposez une distance à parcourir.\n");
+          scanf("%d", &distance);
+        }
+        play_move(g, p, direction, distance);
+        if (game_over_hr(g) == true) {
+          printf("Vous avez fini en %d coups. Voulez-vous rejouer? O/N \n", game_nb_moves(g));
+          scanf("%s", &rejouer);
+          while (rejouer != 'O' || rejouer != 'N') {
+            printf("Voulez-vous rejouer? O/N");
+            scanf("%s", &rejouer);
+          }
+          if (rejouer == 'O') {
+            fin_jeu = false;
+            set_up();
+            int choix = -1;
+            int p = -1;
+            char direction = 'n';
+            int distance = 0;
+            int width = 6;
+            int height = 6;
+            delete_game(g);
+          } else
+            delete_game(g);
+        }
+      }
+    }
+
+    if (choix == 1) {
+      printf("~~~{ L'Ane Rouge }~~~\n\n");
+      printf ("Sélectionnez la largeur, puis la hauteur du tableau.\n");
+      printf ("Limite comprise entre 6 et 10.\n");
+      scanf("%d %d", &width, &height);
+      while (width<6 || width>10 || height<6 || height>10) {
+        printf ("Limite comprise entre 6 et 10.\n");
+        scanf("%d %d", &width, &height);
+      }
+      game g = new_game(width, height, NB_PIECES, pieces);
+      set_board(width , height);
+      new_board(g , width , height , game_board[width][height]);
+      while (game_over_hr(g) == false) {
+        while (p<0 || p>=NB_PIECES) {
+          printf("Sélectionnez une pièce.\n");
+          scanf("%d", &p);
+        }
+        printf("Vous avez sélectionnez %d.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
+        scanf("%s", &direction);
+        while (direction != 'L' && direction != 'U' && direction != 'R' && direction != 'P') {
+          printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
+          scanf("%s", &direction);
+        }
+        printf("Proposez une distance à parcourir.\n");
+        scanf("%d", &distance);
+        while (play_move(g, p, direction, distance) == false) {
+          printf("Distance invalide. Proposez une distance à parcourir.\n");
+          scanf("%d", &distance);
+        }
+        play_move(g, p, direction, distance);
+        if (game_over_hr(g) == true) {
+          printf("Vous avez fini en %d coups. Voulez-vous rejouer? O/N \n", game_nb_moves(g));
+          scanf("%s", &rejouer);
+          while (rejouer != 'O' || rejouer != 'N') {
+            printf("Voulez-vous rejouer? O/N");
+            scanf("%s", &rejouer);
+          }
+          if (rejouer == 'O') {
+            fin_jeu = false;
+            set_up();
+            int choix = -1;
+            int p = -1;
+            char direction = 'n';
+            int distance = 0;
+            int width = 6;
+            int height = 6;
+            delete_game(g);
+          } else
+            delete_game(g);
+        }
+      }
+    }
+  }
 }
-
-/*
-
-void set_piece(int game_board
-
-
-void placer_piece(int a[TAILLE][TAILLE])
-{
-    srand(time(NULL));
-    int i=2+NB_PIECES;
-    while (i>2)
-    {
-        int x=rand()%5;
-        int y=rand()%5;
-        int small=rand()%2;
-        int horizontal=rand()%2;
-        if (horizontal==1 && small==1 && y!=3 && a[x][y]==0 && a[x+1][y]==0)
-        {
-            a[x][y]=i;
-            a[x+1][y]=i;
-            i--;
-        }
-        if (horizontal ==1 && small==0 && y!=3 && x<5 && y<5 && a[x][y]==0 && a[x+1][y]==0 && a[x+2][y]==0)
-        {
-            a[x][y]=i;
-            a[x+1][y]=i;
-            a[x+2][y]=i;
-            i--;
-        }
-        if (horizontal==0 && small==1 && a[x][y]==0 && a[x][y+1]==0)
-        {
-            a[x][y]=i;
-            a[x][y+1]=i;
-            i--;
-        }
-        if (horizontal ==0 && small==0 && x<5 && y<5 && a[x][y]==0 && a[x][y+1]==0 && a[x][y+2]==0)
-        {
-            a[x][y]=i;
-            a[x][y+1]=i;
-            a[x][y+2]=i;
-            i--;
-        }
-    }
-}
-
-void move(int piece, char direction, int distance, int a[TAILLE][TAILLE])
-{
-    //localisation piece
-    int b=0 , c=0, i=0, j=0;
-    for (i=0; i<TAILLE;i++)
-    {
-        for (j=0;j<TAILLE;j++)
-        {
-            if (a[i][j]==piece)
-            {
-                b=i;
-                c=j;
-                break;
-
-            }
-        }
-    }
-    printf(" b: %d, c: %d \n", b, c);
-    //test piece small horizontal
-    bool small, horizontal;
-    if (a[b+2][c]!=piece && a[b][c+2]!=piece)
-        small=true;
-    if (a[b][c+1]==piece)
-        horizontal=true;
-
-    //mouvement piece
-    if (small==true && horizontal ==true)
-    {
-        if(direction=='l')
-        {
-            a[b][c]=0;
-            a[b][c+1]=0;
-            a[b][c-distance]=piece;
-            a[b][c-distance+1]=piece;
-        }
-        if(direction=='r')
-        {
-            a[b][c]=0;
-            a[b][c+1]=0;
-            a[b][c+distance]=piece;
-            a[b][c+distance+1]=piece;
-        }
-    }
-    if (small==false && horizontal ==true)
-    {
-        if(direction=='l')
-        {
-            a[b][c]=0;
-            a[b][c+1]=0;
-            a[b][c+2]=0;
-            a[b][c-distance]=piece;
-            a[b][c-distance+1]=piece;
-            a[b][c-distance+2]=piece;
-        }
-        if(direction=='r')
-        {
-            a[b][c]=0;
-            a[b][c+1]=0;
-            a[b][c+2]=0;
-            a[b][c+distance]=piece;
-            a[b][c+distance+1]=piece;
-            a[b][c+distance+2]=piece;
-        }
-    }
-    if (small==true && horizontal ==false)
-    {
-        if(direction=='u')
-        {
-            a[b][c]=0;
-            a[b+1][c]=0;
-            a[b-distance][c]=piece;
-            a[b-distance+1][c]=piece;
-        }
-        if(direction=='d')
-        {
-            a[b][c]=0;
-            a[b+1][c]=0;
-            a[b+distance][c]=piece;
-            a[b+distance+1][c]=piece;
-        }
-    }
-    if (small==false && horizontal ==false)
-    {
-        if(direction=='u')
-        {
-            a[b][c]=0;
-            a[b+1][c]=0;
-            a[b+2][c]=0;
-            a[b-distance][c]=piece;
-            a[b-distance+1][c]=piece;
-            a[b-distance+2][c]=piece;
-        }
-        if(direction=='d')
-        {
-            a[b][c]=0;
-            a[b+1][c]=0;
-            a[b+2][c]=0;
-            a[b+distance][c]=piece;
-            a[b+distance+1][c]=piece;
-            a[b+distance+2][c]=piece;
-        }
-    }
-}
-
-
-bool game_not_over( int a[TAILLE][TAILLE])
-{
-  return (a[3][6]==1);
-}
-int main()
-{
-    a[3][0]=1;
-    a[3][1]=1;
-    int piece, distance;
-    char direction;
-    printf("\n Actualisation du jeu \n \n");
-    placer_piece(a);
-    new_board(a);
-    while (game_not_over(a)== false)
-    {
-        printf("Donnez les specificitées du mouvement: n°piece 1ere lettre du mouvement distance ");
-        scanf("%d %s %d", &piece, &direction, &distance );
-        move(piece, direction, distance, a);
-        new_board(a);
-    }
-    new_board(a);
-    printf("Bravo! \n");
-    return 0;
-}
-
-*/
