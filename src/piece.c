@@ -3,7 +3,6 @@
 
 #include "piece.h"
 
-
 struct piece_s{
     int x;
     int y;
@@ -17,7 +16,7 @@ struct piece_s{
    Use x and y as position, and small and horizontal as shape*/
 piece new_piece_rh (int x, int y, bool small, bool horizontal){
   piece p = malloc(sizeof(struct piece_s));
-  p -> x = x;    
+  p -> x = x;
   p -> y = y;
   if (small){
     if(horizontal){
@@ -36,13 +35,13 @@ piece new_piece_rh (int x, int y, bool small, bool horizontal){
     p->width = 1;
   }
   if (horizontal){
+    p->move_x = false;
+    p->move_y = true;
+  }
+  else{
     p->move_x = true;
     p->move_y = false;
   }
-  else{
-    p->move_x = false;
-    p->move_y = true; 
-  } 
   return p;
 }
 
@@ -63,28 +62,28 @@ void copy_piece (cpiece src, piece dst){
 
 // Test if the piece p can move in the direction d
 bool can_move ( piece p , dir d){
-  if ( (d == UP || d == DOWN)  && p->move_x && !p->move_y)
+  if ( (d == UP || d == DOWN)  && can_move_y(p))
     return false;
-  if ( (d == LEFT || d == RIGHT) && !p->move_x && p->move_y)
+  if ( (d == LEFT || d == RIGHT) && can_move_x(p))
     return false;
-  return true; 
+  return true;
 }
 
-// Move the piece p in direction d and the distance from parameter 
-void move_piece (piece p, dir d, int distance){
+// Move the piece p in direction d and the distance from parameter
+void move_piece(piece p, dir d, int distance){
   if(can_move(p ,d))
   switch(d){
     case UP :
-      p->y+=distance;
+      p->x+=distance;
       break;
     case LEFT :
-      p->x-=distance;
-      break;
-    case DOWN :
       p->y-=distance;
       break;
+    case DOWN :
+      p->x-=distance;
+      break;
     case RIGHT :
-      p->x+=distance;
+      p->y+=distance;
       break;
     default :
       break;
@@ -92,7 +91,6 @@ void move_piece (piece p, dir d, int distance){
 }
 
 // Return the higthest value between a and b
-
 int max(int a , int b){
   if (a<b)
     return b;
@@ -113,7 +111,7 @@ bool intersect(cpiece p1 , cpiece p2){
   int mindroit = min(get_x(p1) + get_width(p1) , get_x(p2) + get_width(p2));
   int maxbas = max(get_y(p1) , get_y(p2));
   int minhaut = min(get_y(p1) + get_height(p1) , get_y(p2) + get_height(p2));
-  
+
   if ((maxgauche < mindroit) && (maxbas < minhaut))
     return true;
   return false;
@@ -166,4 +164,3 @@ piece new_piece (int x, int y, int width, int height, bool move_x, bool move_y){
   p -> move_y = move_y;
   return p;
 }
-
