@@ -161,10 +161,10 @@ int main() {
           printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
           scanf("%s", &direction);
         }
-        printf("Proposez une distance à parcourir.\n");
+        printf("Proposez une distance Ã  parcourir.\n");
         scanf("%d", &distance);
         while (play_move(g, p, direction, distance) == false) {
-          printf("Distance invalide. Proposez une distance à parcourir.\n");
+          printf("Distance invalide. Proposez une distance Ã  parcourir.\n");
           scanf("%d", &distance);
         }
         play_move(g, p, direction, distance);
@@ -178,12 +178,12 @@ int main() {
           if (rejouer == 'O') {
             fin_jeu = false;
             set_up();
-            int choix = -1;
-            int p = -1;
-            char direction = 'n';
-            int distance = 0;
-            int width = 6;
-            int height = 6;
+            choix = -1;
+            p = -1;
+            direction = 'n';
+            distance = 0;
+            width = 6;
+            height = 6;
             delete_game(g);
           } else
             delete_game(g);
@@ -194,7 +194,7 @@ int main() {
 
     if (choix == 1) {
       printf("~~~{ L'Ane Rouge }~~~\n\n");
-      printf ("Sélectionnez la largeur, puis la hauteur du tableau.\n");
+      printf ("SÃ©lectionnez la largeur, puis la hauteur du tableau.\n");
       printf ("Limite comprise entre 6 et 10.\n");
       scanf("%d %d", &width, &height);
       while (width<6 || width>10 || height<6 || height>10) {
@@ -205,19 +205,19 @@ int main() {
       new_board(g);
       while (game_over_hr(g) == false) {
         while (p<0 || p>=NB_PIECES) {
-          printf("Sélectionnez une pièce.\n");
+          printf("SÃ©lectionnez une piÃ¨ce.\n");
           scanf("%d", &p);
         }
-        printf("Vous avez sélectionnez %d.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
+        printf("Vous avez sÃ©lectionnez %d.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
         scanf("%s", &direction);
         while (direction != 'L' && direction != 'U' && direction != 'R' && direction != 'P') {
           printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
           scanf("%s", &direction);
         }
-        printf("Proposez une distance à parcourir.\n");
+        printf("Proposez une distance Ã  parcourir.\n");
         scanf("%d", &distance);
         while (play_move(g, p, direction, distance) == false) {
-          printf("Distance invalide. Proposez une distance à parcourir.\n");
+          printf("Distance invalide. Proposez une distance Ã  parcourir.\n");
           scanf("%d", &distance);
         }
         play_move(g, p, direction, distance);
@@ -231,12 +231,12 @@ int main() {
           if (rejouer == 'O') {
             fin_jeu = false;
             set_up();
-            int choix = -1;
-            int p = -1;
-            char direction = 'n';
-            int distance = 0;
-            int width = 6;
-            int height = 6;
+            choix = -1;
+            p = -1;
+            direction = 'n';
+            distance = 0;
+            width = 6;
+            height = 6;
             delete_game(g);
           } else
             delete_game(g);
