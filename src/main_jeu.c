@@ -1,4 +1,4 @@
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -24,15 +24,15 @@ void new_board(game g){
   int i,j,k;
   int width = 6;
   int height = 6;
-  
+
   int *game_board = (int *)malloc(sizeof(int)*width*height);
-  
+
   for (int x = 0 ; x < width ; x++){
     for (int y = 0 ; y < height ; y++){
       game_board[x+y*height] = 5;
     }
   }
-  
+
   for (int i = 0 ; i < NB_PIECES ; i++){
     piece p;
     p = pieces[i];
@@ -42,7 +42,7 @@ void new_board(game g){
       }
     }
   }
-  
+
   for (i=0;i<width;i++){
     printf("+---");
   }
@@ -60,23 +60,21 @@ void new_board(game g){
 }
 
 /*
-
 int **set_board(game g){
   int **game_board;
   int width = game_width(g);
   int height = game_height(g);
-  
+
   game_board = (int **)malloc(sizeof(int*)*width);
   for(int j= 0; j < height; ++j){
       game_board[j] = (int *)malloc(sizeof(int)*height);
   }
- 
+
   for (int x = 0 ; x < width ; x++){
     for (int y = 0 ; y < height ; y++){
       game_board[x][y] = -1;
     }
   }
-
   for (int i = 0 ; i < NB_PIECES ; i++){
     piece p;
     p = pieces[i];
@@ -86,18 +84,15 @@ int **set_board(game g){
       }
     }
   }
-
   return game_board;
 }
-
 void new_board(game g){
-
   int i,j,k;
   int width = game_width(g);
   int height = game_height(g);
   int** game_board;
   set_board(g);
-  
+
   for (i=0;i<width;i++){
     printf("+---");
   }
@@ -113,9 +108,8 @@ void new_board(game g){
     printf("+\n");
   }
 }
-
 */
- 
+
 void free_board(game g , int** game_board){
   int height = game_height(g);
   for (int i = 0 ; i < height ; i ++){
@@ -157,8 +151,8 @@ int main() {
         }
         printf("Vous avez selectionnez %d.\n Proposez une direction: LEFT : L, UP : U, RIGHT : R, DOWN N\n", p);
         scanf("%s", &direction);
-        while ((direction != 'L' && direction != 'U' && direction != 'R' && direction != 'P') || (can_move(pieces[p], direction) != true)) {
-          printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n", p);
+        while ((direction != 'L' && direction != 'U' && direction != 'R' && direction != 'P') || (play_move(g, p, direction, 0) != true)) {
+          printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n");
           scanf("%s", &direction);
         }
         printf("Proposez une distance à parcourir.\n");
