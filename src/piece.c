@@ -35,12 +35,12 @@ piece new_piece_rh (int x, int y, bool small, bool horizontal){
     p->width = 1;
   }
   if (horizontal){
-    p->move_x = false;
-    p->move_y = true;
-  }
-  else{
     p->move_x = true;
     p->move_y = false;
+  }
+  else{
+    p->move_x = false;
+    p->move_y = true;
   }
   return p;
 }
@@ -63,10 +63,10 @@ void copy_piece (cpiece src, piece dst){
 // Test if the piece p can move in the direction d
 bool can_move ( piece p , dir d){
   if ( (d == UP || d == DOWN)  && can_move_y(p))
-    return false;
+    return true;
   if ( (d == LEFT || d == RIGHT) && can_move_x(p))
-    return false;
-  return true;
+    return true;
+  return false;
 }
 
 // Move the piece p in direction d and the distance from parameter
@@ -74,18 +74,16 @@ void move_piece(piece p, dir d, int distance){
   if(can_move(p ,d))
   switch(d){
     case UP :
-      p->x+=distance;
-      break;
-    case LEFT :
-      p->y-=distance;
-      break;
-    case DOWN :
-      p->x-=distance;
-      break;
-    case RIGHT :
       p->y+=distance;
       break;
-    default :
+    case LEFT :
+      p->x-=distance;
+      break;
+    case DOWN :
+      p->y-=distance;
+      break;
+    case RIGHT :
+      p->x+=distance;
       break;
   }
 }

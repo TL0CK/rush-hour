@@ -99,7 +99,7 @@ int game_square_piece (game g, int x, int y) {
 /* Test if the game is over
    True if the game is won, false if not */
 bool game_over_hr(cgame g) {
-  return (get_x(g->pieces[0])==4) && (get_y(g->pieces[0])==3);
+  return (get_x(g->pieces[0])==4) && (get_y(g->pieces[0])==2);
 }
 
 // Return the number of piece_num located in g
@@ -113,14 +113,17 @@ cpiece game_piece(cgame g, int piece_num) {
 
 bool play_move(game g , int piece_num, dir d , int distance) {
   piece p = g->pieces[piece_num];
-  if ((d == UP || d == DOWN) && can_move_y(p)){
+  if ((d == UP || d == DOWN) && !can_move_y(p) ){
     printf("Cette piece ne peut bouger que dans le sens de droite et de gauche.\n");
     return false;
   }
-  if ((d == LEFT || d == RIGHT) && can_move_x(p)){
-    printf("Cette piece ne peut bouger que dans le sens de haut en bas.\n");
-    return false;
-  }
+  else { 
+    if ((d == LEFT || d == RIGHT) && !can_move_x(p) ){
+      printf("Cette piece ne peut bouger que dans le sens de haut en bas.\n");
+      return false;
+    }
+    return true;
+}
   int travel = 0;
   while (distance != 0) {
     move_piece(p, d, 1);
