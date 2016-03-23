@@ -139,7 +139,7 @@ int get_width(cpiece p){
 
 // Test if the piece p is horizontal
 bool is_horizontal(cpiece p){
-  return (p->move_x && !p->move_y);
+  return (!p->move_x && p->move_y);
 }
 
 // Test if the piece can move upper and downer
