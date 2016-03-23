@@ -74,16 +74,16 @@ void move_piece(piece p, dir d, int distance){
   if(can_move(p ,d))
   switch(d){
     case UP :
-      p->x+=distance;
+      p->x -= distance;
       break;
     case LEFT :
-      p->y-=distance;
+      p->y -= distance;
       break;
     case DOWN :
-      p->x-=distance;
+      p->x += distance;
       break;
     case RIGHT :
-      p->y+=distance;
+      p->y += distance;
       break;
     default :
       break;
