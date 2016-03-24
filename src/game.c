@@ -121,12 +121,11 @@ bool play_move(game g , int piece_num, dir d , int distance) {
       printf("Cette piece ne peut bouger que dans le sens de haut en bas.\n");
       return false;
   }
-  move_piece(p,d,distance);
-  if (get_x(p) < 0){
-    move_piece(p,d,-distance);
-    printf("coucou");
+  move_piece(p, d, distance);
+  if (get_x(p) < 0 || get_x(p)+get_width(p) > game_width(g)-1 || get_y(p) < 0 || get_y(p)+get_height(p) > game_width(g)-1){
+    printf("Coucou\n");
     return false;
   }
-  printf("je bouge");
+  printf("J'eusse bougé\n");
   return true;
 }
