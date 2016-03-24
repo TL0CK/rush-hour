@@ -84,6 +84,7 @@ int main() {
   int distance = 0;
   int width = 6;
   int height = 6;
+  int nb_moves = 0;
   char rejouer = 'n';
   bool fin_jeu = false;
 
@@ -135,6 +136,7 @@ int main() {
 	
         if(play_move(g, p, direction, distance)){
           move_piece(pieces[p], direction ,distance);
+          nb_moves+=1;
           new_board(g);
         }
         }

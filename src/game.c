@@ -117,32 +117,9 @@ bool play_move(game g , int piece_num, dir d , int distance) {
     printf("Cette piece ne peut bouger que dans le sens de droite et de gauche.\n");
     return false;
   }
-  else { 
-    if ((d == LEFT || d == RIGHT) && !can_move_x(p) ){
+  if ((d == LEFT || d == RIGHT) && !can_move_x(p) ){
       printf("Cette piece ne peut bouger que dans le sens de haut en bas.\n");
       return false;
-    }
-    return true;
-}
-  int travel = 0;
-  while (distance != 0) {
-    move_piece(p, d, 1);
-    g->nb_moves += 1;
-    distance--;
-    travel++;
-    for (int i = 0; i<game_nb_pieces(g); ++i) {
-      if (p == g->pieces[i]) {
-        i++;
-        if (i >= game_nb_pieces(g))
-          break;
-      }
-      if (intersect(p, game_piece(g, i))){
-        printf("Unauthorized move: Piece %d is preventing %d from moving.\n\n", i, piece_num);
-        move_piece(p, d, travel*-1);
-        g->nb_moves -= travel;
-        return false;
-      }
-    }
   }
   return true;
 }
