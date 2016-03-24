@@ -152,12 +152,7 @@ int main() {
           printf("Distance invalide. Proposez une distance à parcourir.\n");
           scanf("%d", &distance);
         }
-	
-        if(play_move(g, p, direction, distance)){
-          play_move(g, p, direction, distance);
-          new_board(g);
-        }
-        
+        new_board(g);
         
         //get_nb_moves(g)+=1;
         }

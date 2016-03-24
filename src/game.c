@@ -121,11 +121,34 @@ bool play_move(game g , int piece_num, dir d , int distance) {
       printf("Cette piece ne peut bouger que dans le sens de haut en bas.\n");
       return false;
   }
+  
+  // PROBLEME A REGLER
+  
+  /*
+  int compteur = 0;
+  for (int i = 1 ; i <= distance ; i++){
+    move_piece(p, d, 1);
+    printf("je descend de 1");
+    compteur += 1;
+    for (int j = 0 ; j < game_nb_pieces(g) ; j++){
+      if (intersect(p,g->pieces[j])){
+        if (piece_num !=j){
+          move_piece(p, d, -compteur);
+          printf("je remonte de x*1");
+          break;
+        }
+      }
+    }
+  }
+  move_piece(p, d, -compteur);
+  */
   move_piece(p, d, distance);
-  if (get_x(p) < 0 || get_x(p)+get_width(p) > game_width(g)-1 || get_y(p) < 0 || get_y(p)+get_height(p) > game_width(g)-1){
-    printf("Coucou\n");
+  if (get_x(p) < 0 || get_x(p)+get_width(p) > game_width(g) || get_y(p) < 0 || get_y(p)+get_height(p) > game_width(g)){
+    move_piece(p, d, -distance);
     return false;
   }
-  printf("J'eusse bougé\n");
   return true;
 }
+
+
+
