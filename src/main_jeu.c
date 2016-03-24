@@ -8,7 +8,7 @@
 
 
 #define TAILLE 6
-#define NB_PIECES 4
+#define NB_PIECES 5
 
 piece pieces[NB_PIECES];
 
@@ -33,7 +33,7 @@ void new_board(game g) {
     }
   }
 
-  for (int i = 0 ; i <= NB_PIECES ; i++) {
+  for (int i = 0 ; i < NB_PIECES ; i++) {
     piece p;
     p = pieces[i];
     if (can_move_x(p)) {
@@ -79,12 +79,15 @@ int main() {
   set_up();
   char choix = 'n';
   int p = -1;
+  int p_choix = 0;
+  char direction_choix;
   char direction = 'n';
   dir d;
   int distance = 0;
   int width = 6;
   int height = 6;
   int nb_moves = 0;
+  char rejouer_choix;
   char rejouer = 'n';
   bool fin_jeu = false;
 
@@ -105,15 +108,12 @@ int main() {
       new_board(g);
       while (game_over_hr(g) == false) {
         printf("Selectionnez une piece.\n");
-        scanf("%d", &p);
+        scanf("%d", &p_choix);
+        p = p_choix;
         printf("Vous avez selectionnez %d.\n Proposez une direction: LEFT : L, UP : U, RIGHT : R, DOWN D\n", p);
-        scanf("%s", &direction);
-        while ((direction != 'L' && direction != 'U' && direction != 'R' && direction != 'D') || !play_move(g, p, direction, 0)) {
-          printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n");
-          scanf("%s", &direction);
-        }
-        if(direction == 'U' || direction == 'R' || direction == 'D' || direction == 'L')
-          switch(direction) {
+        scanf("%s", &direction_choix);
+        direction = direction_choix;
+        switch(direction) {
           case 'U' :
             direction = UP;
             break;
@@ -127,6 +127,25 @@ int main() {
             direction = RIGHT;
             break;
         }
+        while ((direction != RIGHT && direction != UP && direction != DOWN && direction != LEFT) || !can_move(pieces[p], direction)) {
+          printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n");
+          scanf("%s", &direction_choix); 
+          direction = direction_choix;
+          switch(direction) {
+          case 'U' :
+            direction = UP;
+            break;
+          case 'L' :
+            direction = LEFT;
+            break;
+          case 'D' :
+            direction = DOWN;
+            break;
+          case 'R' :
+            direction = RIGHT;
+            break;
+          }
+        }
         printf("Proposez une distance à parcourir.\n");
         scanf("%d", &distance);
         while (play_move(g, p, direction, distance) == false) {
@@ -135,35 +154,46 @@ int main() {
         }
 	
         if(play_move(g, p, direction, distance)){
-          move_piece(pieces[p], direction ,distance);
-          nb_moves+=1;
+          play_move(g, p, direction, distance);
           new_board(g);
         }
+        
+        
+        //get_nb_moves(g)+=1;
         }
         if (game_over_hr(g) == true) {
-          printf("Vous avez fini en %d coups. Voulez-vous rejouer? O/N \n", game_nb_moves(g));
-          scanf("%s", &rejouer);
-          /*while (rejouer != 'O' || rejouer != 'N') {
-            printf("Voulez-vous rejouer? O/N");
-            scanf("%s", &rejouer);
-            if (rejouer == 'O') {
-              fin_jeu = false;
-              set_up();
-              choix = -1;
-              p = -1;
-              direction = 'n';
-              distance = 0;
-              width = 6;
-              height = 6;
-              delete_game(g);
-          } else
-*/
-            delete_game(g);
-
-        }
-      }
+          printf("Vous avez fini en %d coups. Bravo ! \n", nb_moves);
+          return EXIT_SUCCESS;
+         }
+         }
+        /*
+         while (rejouer != 'O' || rejouer != 'N') {
+           printf("Voulez-vous rejouer? O/N");
+           scanf("%s", &rejouer_choix);
+           rejouer = rejouer_choix;
+         }
+         if (rejouer == 'O') {
+           fin_jeu = false;
+           delete_game(g);
+           set_up();
+           new_board(g);
+           choix = -1;
+           p = -1;
+           direction = 'n';
+           distance = 0;
+           width = 6;
+           height = 6;
+         } 
+         else{
+           delete_game(g);
+         }
+       }
+       
+       */
+    
       //free(g);
-    }
+   }
+    
 
 /*
     if (choix == 'A') {

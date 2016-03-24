@@ -117,9 +117,16 @@ bool play_move(game g , int piece_num, dir d , int distance) {
     printf("Cette piece ne peut bouger que dans le sens de droite et de gauche.\n");
     return false;
   }
-  if ((d == LEFT || d == RIGHT) && !can_move_x(p) ){
+  if ((d == LEFT || d == RIGHT) && !can_move_x(p)){
       printf("Cette piece ne peut bouger que dans le sens de haut en bas.\n");
       return false;
   }
+  move_piece(p,d,distance);
+  if (get_x(p) < 0){
+    move_piece(p,d,-distance);
+    printf("coucou");
+    return false;
+  }
+  printf("je bouge");
   return true;
 }
