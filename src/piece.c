@@ -104,15 +104,30 @@ int min(int a , int b){
 
 /* Test if the piece p1 and p2 have any intersection between them
    True if they have one, false if not*/
-bool intersect(cpiece p1 , cpiece p2){
+bool intersect(cpiece p1 , cpiece p2 ){
+
+for (int i=1; i<get_width(p1); ++i) {
+        for (int j=1; j<get_height(p1); ++j) {
+            for (int k=1; k<get_width(p2); ++k) {
+                for (int l=1; l<get_height(p2); ++l) {
+                    if((p1->x)+i == (p2->x)+k && (p1->y)+j == (p2->y)+l)
+                        return true;
+                }
+            }
+        }
+    }
+    return false;
+/*
+
   int maxgauche = max(get_x(p1),get_x(p2));
   int mindroit = min(get_x(p1) + get_width(p1) , get_x(p2) + get_width(p2));
-  int maxbas = max(get_y(p1) , get_y(p2));
-  int minhaut = min(get_y(p1) + get_height(p1) , get_y(p2) + get_height(p2));
+  int maxbas = max(get_y(p1) ,  get_y(p2));
+  int minhaut = min( get_y(p1) + get_height(p1) , get_y(p2) + get_height(p2));
 
   if ((maxgauche < mindroit) && (maxbas < minhaut))
     return true;
   return false;
+  */
 }
 
 // Return the x of the piece p
@@ -148,6 +163,10 @@ bool can_move_x(cpiece p){
 // Test if the piece can move in right and left direction
 bool can_move_y(cpiece p){
   return p->move_y;
+}
+
+bool is_small(cpiece p){
+  return (p->width < 3 && p->height < 3);
 }
 
 /* Create new piece for the game "Ane Rouge" and allocate memory for her

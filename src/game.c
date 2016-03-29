@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "piece.h"
 #include "game.h"
 
 struct game_s {
@@ -110,44 +111,134 @@ cpiece game_piece(cgame g, int piece_num) {
 /* Find the piece_num in the game's board of g
    Then test if this piece can move in the direction d
    Move the piece in this direction with the distance of parameter */
+int conversion_x (piece p , int width , int height){
+  int i = get_x(p)+1;
+  int j = get_y(p);
+  int tab = i + (height-1-j)*height;
+  int i_conversion =  (tab%(height));
+  return i_conversion;
+}
 
-bool play_move(game g , int piece_num, dir d , int distance) {
-  piece p = g->pieces[piece_num];
-  if ((d == UP || d == DOWN) && !can_move_y(p) ){
+int conversion_y (piece p , int width , int height){
+  int i = get_x(p)+1;
+  int j = get_y(p);
+  int tab = i + (height-1-j)*height;
+  int j_conversion = height - j;
+  return j_conversion;
+}
+
+bool play_move(game g , int piece_num, dir d , int distance , int width , int height) {
+
+  int new_x = conversion_x (g->pieces[piece_num] , width , height);
+  int new_y = conversion_y (g->pieces[piece_num] , width , height);
+  piece piecetest = new_piece_rh( new_x, new_y, is_small(g->pieces[piece_num]) , is_horizontal(g->pieces[piece_num]));
+  printf("new_x = %d et new_y = %d\n" , new_x , new_y);
+  if ((d == UP || d == DOWN) && !can_move_y(piecetest) ){
     printf("Cette piece ne peut bouger que dans le sens de droite et de gauche.\n");
     return false;
   }
-  if ((d == LEFT || d == RIGHT) && !can_move_x(p)){
+  if ((d == LEFT || d == RIGHT) && !can_move_x(piecetest)){
       printf("Cette piece ne peut bouger que dans le sens de haut en bas.\n");
       return false;
   }
   
   // PROBLEME A REGLER
   
-  /*
-  int compteur = 0;
   for (int i = 1 ; i <= distance ; i++){
-    move_piece(p, d, 1);
-    printf("je descend de 1");
-    compteur += 1;
+    move_piece(piecetest, d, 1);
     for (int j = 0 ; j < game_nb_pieces(g) ; j++){
-      if (intersect(p,g->pieces[j])){
+      int new_x_temp = conversion_x (g->pieces[j] , width , height);
+      int new_y_temp = conversion_y (g->pieces[j] , width , height);
+      
+      printf("new_x_temp = %d et new_y_temp = %d\n" , new_x_temp , new_y_temp);
+      
+      piece piecetemp = new_piece_rh( new_x_temp, new_y_temp, is_small(g->pieces[j]) , is_horizontal(g->pieces[j]));
+      if (intersect(piecetest,piecetemp)){ 
         if (piece_num !=j){
-          move_piece(p, d, -compteur);
-          printf("je remonte de x*1");
-          break;
+         return false;
         }
       }
     }
   }
-  move_piece(p, d, -compteur);
-  */
+  move_piece(g->pieces[piece_num], d, distance);
+  return true;
+  /*
   move_piece(p, d, distance);
   if (get_x(p) < 0 || get_x(p)+get_width(p) > game_width(g) || get_y(p) < 0 || get_y(p)+get_height(p) > game_width(g)){
     move_piece(p, d, -distance);
     return false;
   }
   return true;
+  
+ 
+      int x=get_x(g->_pieces[piece_num]);
+    int y=get_y(g->_pieces[piece_num]);
+
+
+    switch(d) {
+    case UP:
+        if (y+get_height(g->_pieces[piece_num])-1+distance<g->_height) {
+            for (int i=0; i<=distance; i++) {
+                for (int j=0; j<get_width(g->_pieces[piece_num]); ++j) {
+                    if (game_square_piece(g,x+j,y+get_height(g->_pieces[piece_num])-1+i)!=-1 && game_square_piece(g,x+j,y+get_height(g->_pieces[piece_num])-1+i)!=piece_num)
+                        return false;
+                }
+            }
+            move_piece(g->_pieces[piece_num],d,distance);
+
+            g->_nbMoves+=distance;
+            return true;
+        }
+        return false;
+    case DOWN:
+        if (y-distance>=0) {
+            for (int i=0; i<=distance; i++) {
+                for (int j=0; j<get_width(g->_pieces[piece_num]); ++j) {
+                    if (game_square_piece(g,x+j,y-i)!=-1 && game_square_piece(g,x+j,y-i)!=piece_num)
+                        return false;
+                }
+            }
+            move_piece(g->_pieces[piece_num],d,distance);
+
+            g->_nbMoves+=distance;
+            return true;
+        }
+        return false;
+    case LEFT:
+        if (x-distance>=0) {
+            for (int i=0; i<=distance; i++) {
+                for (int j=0; j<get_height(g->_pieces[piece_num]); ++j) {
+                    if (game_square_piece(g,x-i,y+j)!=-1 && game_square_piece(g,x-i,y+j)!=piece_num)
+                        return false;
+                }
+            }
+            move_piece(g->_pieces[piece_num],d,distance);
+
+            g->_nbMoves+=distance;
+            return true;
+        }
+        return false;
+    case RIGHT:
+        if (x+get_width(g->_pieces[piece_num])-1+distance<g->_width) {
+            for (int i=0; i<=distance; i++) {
+                for (int j=0; j<get_height(g->_pieces[piece_num]); ++j) {
+                    if (game_square_piece(g,x+get_width(g->_pieces[piece_num])-1+i,y+j)!=-1 && game_square_piece(g,x+get_width(g->_pieces[piece_num])-1+i,y+j)!=piece_num)
+                        return false;
+                }
+            }
+            move_piece(g->_pieces[piece_num],d,distance);
+
+            g->_nbMoves+=distance;
+            return true;
+        }
+        return false;
+    default :
+        return false;
+
+    
+
+}
+ */
 }
 
 

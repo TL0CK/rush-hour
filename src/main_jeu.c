@@ -148,7 +148,8 @@ int main() {
         }
         printf("Proposez une distance à parcourir.\n");
         scanf("%d", &distance);
-        while (play_move(g, p, direction, distance) == false) {
+  
+        while (play_move(g, p, direction, distance , width , height) == false) {
           printf("Distance invalide. Proposez une distance à parcourir.\n");
           scanf("%d", &distance);
         }

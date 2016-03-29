@@ -2,7 +2,6 @@
 #define _PIECE_H_
 #include <stdbool.h> //The type bool is defined in this file
 
-
 /**
  * @file piece.h
  *
@@ -109,6 +108,6 @@ bool can_move_y(cpiece p);
  */
 piece new_piece (int x, int y, int width, int height, bool move_x, bool move_y);
 
-
+bool is_small(cpiece p);
 
 #endif
