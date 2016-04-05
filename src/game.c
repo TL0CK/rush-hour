@@ -133,6 +133,7 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
   int new_y = conversion_y (g->pieces[piece_num] , width , height);
   piece piecetest = new_piece_rh( new_x, new_y, is_small(g->pieces[piece_num]) , is_horizontal(g->pieces[piece_num]));
   printf("new_x = %d et new_y = %d\n" , new_x , new_y);
+  
   if ((d == UP || d == DOWN) && !can_move_y(piecetest) ){
     printf("Cette piece ne peut bouger que dans le sens de droite et de gauche.\n");
     return false;
@@ -142,7 +143,6 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
       return false;
   }
   
-  // PROBLEME A REGLER
   
   for (int i = 1 ; i <= distance ; i++){
     move_piece(piecetest, d, 1);
@@ -155,6 +155,7 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
       piece piecetemp = new_piece_rh( new_x_temp, new_y_temp, is_small(g->pieces[j]) , is_horizontal(g->pieces[j]));
       if (intersect(piecetest,piecetemp)){ 
         if (piece_num !=j){
+         printf("Intersect avec %d\n" , j);
          return false;
         }
       }
@@ -162,6 +163,8 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
   }
   move_piece(g->pieces[piece_num], d, distance);
   return true;
+  
+  }
   /*
   move_piece(p, d, distance);
   if (get_x(p) < 0 || get_x(p)+get_width(p) > game_width(g) || get_y(p) < 0 || get_y(p)+get_height(p) > game_width(g)){
@@ -169,77 +172,10 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
     return false;
   }
   return true;
-  
- 
-      int x=get_x(g->_pieces[piece_num]);
-    int y=get_y(g->_pieces[piece_num]);
-
-
-    switch(d) {
-    case UP:
-        if (y+get_height(g->_pieces[piece_num])-1+distance<g->_height) {
-            for (int i=0; i<=distance; i++) {
-                for (int j=0; j<get_width(g->_pieces[piece_num]); ++j) {
-                    if (game_square_piece(g,x+j,y+get_height(g->_pieces[piece_num])-1+i)!=-1 && game_square_piece(g,x+j,y+get_height(g->_pieces[piece_num])-1+i)!=piece_num)
-                        return false;
-                }
-            }
-            move_piece(g->_pieces[piece_num],d,distance);
-
-            g->_nbMoves+=distance;
-            return true;
-        }
-        return false;
-    case DOWN:
-        if (y-distance>=0) {
-            for (int i=0; i<=distance; i++) {
-                for (int j=0; j<get_width(g->_pieces[piece_num]); ++j) {
-                    if (game_square_piece(g,x+j,y-i)!=-1 && game_square_piece(g,x+j,y-i)!=piece_num)
-                        return false;
-                }
-            }
-            move_piece(g->_pieces[piece_num],d,distance);
-
-            g->_nbMoves+=distance;
-            return true;
-        }
-        return false;
-    case LEFT:
-        if (x-distance>=0) {
-            for (int i=0; i<=distance; i++) {
-                for (int j=0; j<get_height(g->_pieces[piece_num]); ++j) {
-                    if (game_square_piece(g,x-i,y+j)!=-1 && game_square_piece(g,x-i,y+j)!=piece_num)
-                        return false;
-                }
-            }
-            move_piece(g->_pieces[piece_num],d,distance);
-
-            g->_nbMoves+=distance;
-            return true;
-        }
-        return false;
-    case RIGHT:
-        if (x+get_width(g->_pieces[piece_num])-1+distance<g->_width) {
-            for (int i=0; i<=distance; i++) {
-                for (int j=0; j<get_height(g->_pieces[piece_num]); ++j) {
-                    if (game_square_piece(g,x+get_width(g->_pieces[piece_num])-1+i,y+j)!=-1 && game_square_piece(g,x+get_width(g->_pieces[piece_num])-1+i,y+j)!=piece_num)
-                        return false;
-                }
-            }
-            move_piece(g->_pieces[piece_num],d,distance);
-
-            g->_nbMoves+=distance;
-            return true;
-        }
-        return false;
-    default :
-        return false;
-
-    
 
 }
- */
-}
+
+*/
 
 
 
