@@ -159,28 +159,29 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
 	
 	printf("x%d = %d y%d = %d , x%d = %d y%d = %d\n" , piece_num , get_x(piecetest) , piece_num ,get_y(piecetest) , j , get_x(g->pieces[j]) , j , get_y(g->pieces[j]));
       if (intersect(piecetest,g->pieces[j])){ 
-        //if (piece_num !=j){
+        if (piece_num !=j){
          printf("Intersect avec %d\n" , j);
          return false;
-        //}
+        }
       }
     }
   }
+/*
   move_piece(g->pieces[piece_num], d, distance);
   return true;
   
   }
-  /*
-  move_piece(p, d, distance);
-  if (get_x(p) < 0 || get_x(p)+get_width(p) > game_width(g) || get_y(p) < 0 || get_y(p)+get_height(p) > game_width(g)){
-    move_piece(p, d, -distance);
+*/
+  move_piece(g->pieces[piece_num], d, distance);
+  if (get_x(g->pieces[piece_num]) < 0 || get_x(g->pieces[piece_num])+get_width(g->pieces[piece_num]) > game_width(g) || get_y(g->pieces[piece_num]) < 0 || get_y(g->pieces[piece_num])+get_height(g->pieces[piece_num]) > game_width(g)){
+    move_piece(g->pieces[piece_num], d, -distance);
     return false;
   }
   return true;
 
 }
 
-*/
+
 
 
 
