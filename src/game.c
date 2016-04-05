@@ -145,7 +145,33 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
       return false;
   }
   
-  
+  switch(d) {
+  case UP :
+    if (get_y(piecetest) + get_height(piecetest)-1 + distance > game_height(g)-1) {
+      printf("La piece sort du tableau\n");
+      return false;
+    }
+    break;
+  case LEFT :
+    if (get_x(piecetest) - distance < 0) {
+      printf("La piece sort du tableau\n");
+      return false;
+    }
+    break;
+  case DOWN :
+    if (get_y(piecetest) - distance < 0) {
+      printf("La piece sort du tableau\n");
+      return false;
+    }
+    break;
+  case RIGHT :
+    if (get_x(piecetest) + get_width(piecetest)-1 + distance >= game_width(g)-1) {
+      printf("La piece sort du tableau\n");
+      return false;
+    }
+    break;
+  }
+
   for (int i = 1 ; i <= distance ; i++){
     move_piece(piecetest, d, 1);
     for (int j = 0 ; j < game_nb_pieces(g) ; j++){
