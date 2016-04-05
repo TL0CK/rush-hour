@@ -128,11 +128,13 @@ int conversion_y (piece p , int width , int height){
 }
 
 bool play_move(game g , int piece_num, dir d , int distance , int width , int height) {
-
+  /*
   int new_x = conversion_x (g->pieces[piece_num] , width , height);
   int new_y = conversion_y (g->pieces[piece_num] , width , height);
   piece piecetest = new_piece_rh( new_x, new_y, is_small(g->pieces[piece_num]) , is_horizontal(g->pieces[piece_num]));
-  printf("new_x = %d et new_y = %d\n" , new_x , new_y);
+  */
+  piece piecetest = new_piece_rh( get_x(g->pieces[piece_num]), get_y(g->pieces[piece_num]), is_small(g->pieces[piece_num]) , is_horizontal(g->pieces[piece_num]));
+  //printf("new_x = %d et new_y = %d\n" , new_x , new_y);
   
   if ((d == UP || d == DOWN) && !can_move_y(piecetest) ){
     printf("Cette piece ne peut bouger que dans le sens de droite et de gauche.\n");
@@ -147,17 +149,20 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
   for (int i = 1 ; i <= distance ; i++){
     move_piece(piecetest, d, 1);
     for (int j = 0 ; j < game_nb_pieces(g) ; j++){
+      /*
       int new_x_temp = conversion_x (g->pieces[j] , width , height);
       int new_y_temp = conversion_y (g->pieces[j] , width , height);
+      */
+      //printf("new_x_temp = %d et new_y_temp = %d\n" , new_x_temp , new_y_temp);
       
-      printf("new_x_temp = %d et new_y_temp = %d\n" , new_x_temp , new_y_temp);
-      
-      piece piecetemp = new_piece_rh( new_x_temp, new_y_temp, is_small(g->pieces[j]) , is_horizontal(g->pieces[j]));
-      if (intersect(piecetest,piecetemp)){ 
-        if (piece_num !=j){
+      //piece piecetemp = new_piece_rh( get_x(g->pieces[j]), get_y(g->pieces[j]), is_small(g->pieces[j]) , is_horizontal(g->pieces[j]));
+	
+	printf("x%d = %d y%d = %d , x%d = %d y%d = %d\n" , piece_num , get_x(piecetest) , piece_num ,get_y(piecetest) , j , get_x(g->pieces[j]) , j , get_y(g->pieces[j]));
+      if (intersect(piecetest,g->pieces[j])){ 
+        //if (piece_num !=j){
          printf("Intersect avec %d\n" , j);
          return false;
-        }
+        //}
       }
     }
   }

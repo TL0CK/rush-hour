@@ -16,7 +16,7 @@ piece.h
 stdbool.h
 -
 
-/net/cremi/vviguier/projet_rush_hour/rush-hour/src/game.c
+/home/valentin/Documents/rush-hour/rush-hour/src/game.c
 stdio.h
 -
 stdlib.h
@@ -24,15 +24,15 @@ stdlib.h
 stdbool.h
 -
 piece.h
-/net/cremi/vviguier/projet_rush_hour/rush-hour/src/piece.h
+/home/valentin/Documents/rush-hour/rush-hour/src/piece.h
 game.h
-/net/cremi/vviguier/projet_rush_hour/rush-hour/src/game.h
+/home/valentin/Documents/rush-hour/rush-hour/src/game.h
 
-/net/cremi/vviguier/projet_rush_hour/rush-hour/src/piece.c
+/home/valentin/Documents/rush-hour/rush-hour/src/piece.c
 stdlib.h
 -
 stdio.h
 -
 piece.h
-/net/cremi/vviguier/projet_rush_hour/rush-hour/src/piece.h
+/home/valentin/Documents/rush-hour/rush-hour/src/piece.h
 

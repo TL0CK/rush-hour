@@ -2,6 +2,7 @@ cmake_minimum_required (VERSION 3.3)
 
 project (rush_hour)
 
+
 add_definitions (-std=c99 -g)
 
 include_directories (

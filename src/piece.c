@@ -107,20 +107,46 @@ int min(int a , int b){
 
 bool intersect(cpiece A , cpiece B ){
 	if (is_horizontal(A) && is_horizontal(B)){
-	  if (get_x(A) != get_x(B)){
+	  if (get_y(A) != get_y(B)){
 	    return false;
 	  }
-	  for (int i = get_x(A) ; i < get_x(A) + get_width(A) - 1 ; i++){
+	  for (int i = get_x(A) ; i <= get_x(A) + get_width(A)  ; i++){
 	    if ( i == get_x(B) ) {
 	      return true;
 	    }
 	  }
 	  return false;
 	}
-	
+
 	if (is_horizontal(A) && !is_horizontal(B)){
-	  for (int j = get_x(A) ; j < get_x(A) + get_width(A) - 1 ; j++){
-	    for (int k = get_y(B) ; k < get_y(B) + get_height(B)-1 ; k++){
+	  for (int j = get_x(A) ; j <= get_x(A) + get_width(A)  ; j++){
+	    for (int k = get_y(B) ; k < get_y(B) + get_height(B) ; k++){
+	      if ( j == get_x(B) && k == get_y(A)){
+		return true;
+	      }
+	    }
+	  }
+        return false;
+        }
+
+ 	if (is_horizontal(B) && !is_horizontal(A)){
+	  for (int j = get_x(B) ; j <= get_x(B) + get_width(B)  ; j++){
+	    for (int k = get_y(A) ; k < get_y(A) + get_height(A) ; k++){
+	      if ( j == get_x(A) && k == get_y(B)){
+		return true;
+	      }
+	    }
+	  }
+        return false;
+        }
+
+
+
+
+/*
+	if (is_horizontal(A) && !is_horizontal(B)){
+	  for (int j = get_x(A) ; j < get_x(A) + get_width(A)  ; j++){
+	    for (int k = get_y(B) ; k < get_y(B) + get_height(B) ; k++){
 	      if (j + get_y(A)*6 == k*6 + get_x(B)){
 	        return true;
 	      }
@@ -138,7 +164,7 @@ bool intersect(cpiece A , cpiece B ){
 	  }
 	}
 	return false;
-
+*/
 /*
 
 

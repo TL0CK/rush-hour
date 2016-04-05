@@ -1,4 +1,4 @@
-# Install script for directory: /net/cremi/vviguier/projet_rush_hour/rush-hour
+# Install script for directory: /home/valentin/Documents/rush-hour/rush-hour
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,7 +33,7 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/build" TYPE STATIC_LIBRARY FILES "/net/cremi/vviguier/projet_rush_hour/rush-hour/build/libgame.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/build" TYPE STATIC_LIBRARY FILES "/home/valentin/Documents/rush-hour/rush-hour/build/libgame.a")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -43,7 +43,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../test_piece"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/.." TYPE EXECUTABLE FILES "/net/cremi/vviguier/projet_rush_hour/rush-hour/build/test_piece")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/.." TYPE EXECUTABLE FILES "/home/valentin/Documents/rush-hour/rush-hour/build/test_piece")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../test_piece" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../test_piece")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -59,7 +59,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../main_jeu"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/.." TYPE EXECUTABLE FILES "/net/cremi/vviguier/projet_rush_hour/rush-hour/build/main_jeu")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/.." TYPE EXECUTABLE FILES "/home/valentin/Documents/rush-hour/rush-hour/build/main_jeu")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../main_jeu" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/../main_jeu")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -76,5 +76,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/net/cremi/vviguier/projet_rush_hour/rush-hour/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/valentin/Documents/rush-hour/rush-hour/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
