@@ -1,3 +1,0 @@
-/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/main_jeu.dir
-/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/test_piece.dir
-/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/game.dir

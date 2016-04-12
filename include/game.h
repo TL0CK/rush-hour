@@ -86,6 +86,7 @@ bool game_over_hr(cgame g);
  * @return true if the move is valid, false otherwise.
 */
 bool play_move(game g, int piece_num, dir d, int distance , int width , int height );
+bool play_move_an(game g , int piece_num, dir d , int distance , int width , int height);
 
 /**
  * @brief Return the number of moves from the beginning of the game g.

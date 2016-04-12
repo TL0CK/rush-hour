@@ -1,0 +1,24 @@
+Bienvenue dans le guide de survie du Rush-Hour / Ane Rouge ! 
+
+Vous trouverez , dans le même dossier que ce LISEZMOI.txt , trois dossiers et quelques fichiers. Via le terminal conduisez vous dans le dossier build et lancez l'executable en tapant la commande suivante :
+./main_jeu
+
+Si le fichier n'est pas contenu dans le dossier build , aucun problème il vous suffira de taper la commande suivante :
+cmake ..
+make
+./main_jeu
+	
+Votre jeu devrait maintenant s'afficher sans problème dans votre terminal !
+
+Maintenant comment jouer ?
+
+Une fois le jeu lancé vous avez le choix entre Ane Rouge et Rush Hour , choissisez le jeu qui vous plait en appuyant sur A ou R et ensuite sur entrée.
+Pour une meilleur prise en main de l'interface , merci de commencer par le Rush Hour.
+
+Si vous avez commencé par le Rush Hour , un choix de niveau s'offre à vous. Choisissez en premier lieu le Tuto en tapant sur T puis sur entrée.
+
+Pour faire bouger votre véhicule , entrez le numéro du véhicule, puis sa direction (R pour Right, L pour Left...), puis la distance que vous souhaitez voir parcourir votre véhicule.
+
+Si votre distance est incorrecte ou que votre piece est bloqué , donnez 0 comme distance et le véhicule ne bougera pas . Vous aurez ainsi accès à un autre véhicule.
+	
+Amusez vous bien !

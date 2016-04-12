@@ -68,6 +68,7 @@ void move_piece (piece p, dir d, int distance);
  * @return true if pieces p1 and p2 have at least one cell in common and false otherwise.
  */
 bool intersect(cpiece p1, cpiece p2);
+bool intersect_an (cpiece A , cpiece B );
 
 /**
  * @brief Returns the abscissa of leftmost point of the piece p.

@@ -19,11 +19,28 @@ void set_up_rh() {
   pieces[3] = new_piece_rh(4, 1, true, true);
   pieces[4] = new_piece_rh(5, 3, false, false);
 }
+
+void set_up_rh2() {
+  pieces[0] = new_piece_rh(0, 2, true, true);
+  pieces[1] = new_piece_rh(2, 1, false, false);
+  pieces[2] = new_piece_rh(1, 4, true, true);
+  pieces[3] = new_piece_rh(3, 2, true, false);
+  pieces[4] = new_piece_rh(3, 1, false, true);
+}
+
+void set_up_rh3() {
+  pieces[0] = new_piece_rh(0, 2, true, true);
+  pieces[1] = new_piece_rh(0, 3, false, false);
+  pieces[2] = new_piece_rh(3, 0, false, false);
+  pieces[3] = new_piece_rh(1, 5, false, true);
+  pieces[4] = new_piece_rh(3, 4, false, true);
+}
+
 void set_up_a() {
   pieces[0] = new_piece(0, 2, 2, 1, true, true);
-  pieces[1] = new_piece(4, 3, 3, 2, true, true);
-  pieces[2] = new_piece(1, 0, 3, 3, true, true);
-  pieces[3] = new_piece(4, 1, 1, 2, true, true);
+  pieces[1] = new_piece(4, 3, 2, 3, true, true);
+  pieces[2] = new_piece(1, 0, 3, 2, true, true);
+  pieces[3] = new_piece(4, 1, 2, 1, true, true);
   pieces[4] = new_piece(2, 6, 2, 2, true, true);
 }
 
@@ -91,7 +108,8 @@ void new_board_a(game g) {
     p = pieces[i];
     for (int j = 0 ; j < get_height(p) ; j++){
 	for (int k = 0 ; k < get_width(p) ; k++){
-		game_board[get_x(p)+(height*get_y(p)+j+k*height)] = i;
+	  game_board[(get_x(p)+k)+(height-1-get_y(p)-j)*height] = i;
+	//game_board[get_x(p)+(height*get_y(p)+j+k*height)] = i;
         }
     }
   }
@@ -122,25 +140,24 @@ void free_board(game g , int** game_board) {
   free (game_board);
 }
 
+
 int main() {
 
   char choix = 'n';
-  int p = -1;
-  int p_choix = 0;
+  int p = -1 , p_choix = 0;
   char direction_choix;
   char direction = 'n';
   dir d;
-  int distance = 0;
-  int width = 6;
-  int height = 6;
-  int nb_moves = 0;
-  char rejouer_choix;
+  int distance = 0 , width = 6 , height = 6 ,nb_moves = 0;
+  char rejouer_choix , lvl_choice , lvl;
   char rejouer = 'n';
   bool fin_jeu = false;
 
   while (fin_jeu == false) {
+    printf("\e[2J\e[H");//clean the shell
+    // A huge thanks for the Camille AUSSIGNAC's group who gives us this priceless printf !
     while (choix != 'A' || choix != 'R') {
-      printf("\n Selection du jeu \n\n R pour Rush Hour, A pour l'Ane Rouge \n");
+      printf("\nSelection du jeu \n\nR pour Rush Hour, A pour l'Ane Rouge \n");
       scanf("%s", &choix);
       if (choix != 'A' && choix != 'R') {
         printf("Choix impossible : R pour Rush Hour , A pour l'Ane Rouge \n");
@@ -150,6 +167,7 @@ int main() {
       }
     }
     if (choix == 'A') {
+      printf("\e[2J\e[H");//clean the shell
       printf("---| ANE ROUGE |--- \n\n");
       game g = new_game(6, 8, NB_PIECES, pieces);
       set_up_a();
@@ -158,7 +176,12 @@ int main() {
         printf("Selectionnez une piece.\n");
         scanf("%d", &p_choix);
         p = p_choix;
-        printf("Vous avez selectionnez %d.\n Proposez une direction: LEFT : L, UP : U, RIGHT : R, DOWN D\n", p);
+	while ( p < 0 || p > NB_PIECES){
+		printf("Selectionnez une piece.\n");
+      	 	scanf("%d", &p_choix);
+      		p = p_choix;
+	}
+        printf("Vous avez selectionnez %d.\nProposez une direction: LEFT : L, UP : U, RIGHT : R, DOWN D\n", p);
         scanf("%s", &direction_choix);
         direction = direction_choix;
         switch(direction) {
@@ -196,13 +219,14 @@ int main() {
         }
         printf("Proposez une distance à parcourir.\n");
         scanf("%d", &distance);
-        while (play_move(g, p, direction, distance, width, height) == false) {
-          printf("Distance invalide. Proposez une distance à parcourir.\n");
+        while (play_move_an(g, p, direction, distance, width, height) == false) {
+          printf("Proposez une distance à parcourir.\n");
           scanf("%d", &distance);
         }
+	printf("\e[2J\e[H");//clean the shell
         new_board_a(g);
         
-        //get_nb_moves(g)+=1;
+        nb_moves+=1;
         }
         if (game_over_hr(g) == true) {
           printf("Vous avez fini en %d coups. Bravo ! \n", nb_moves);
@@ -210,15 +234,41 @@ int main() {
          }
          }
     if (choix == 'R') {
+      printf("\e[2J\e[H");//clean the shell
       printf("---| RUSH HOUR |--- \n\n");
+      printf("Selectionnez un niveau : Tuto , T / Facile , F / Normal , N / Difficile , D.\n");
+      scanf("%s", &lvl_choice);
+      lvl = lvl_choice;
       game g = new_game_hr(NB_PIECES, pieces);
-      set_up_rh();
-      new_board_rh(g);
+      while (lvl != 'T' && lvl != 'F' && lvl != 'N' && lvl != 'D') {
+          printf("Niveau invalide.\n Selectionnez un niveau : Tuto , T / Facile , F / Normal , N / Difficile , D.\n");
+          scanf("%s", &lvl_choice);
+      	  lvl = lvl_choice;
+      }
+      printf("\e[2J\e[H");//clean the shell
+      switch(lvl) {
+          case 'T' :
+    		set_up_rh();
+    		new_board_rh(g);
+            	break;
+          case 'F' :
+      		set_up_rh2();
+      		new_board_rh(g);
+            	break;
+          case 'N' :
+      		set_up_rh3();
+      		new_board_rh(g);
+            	break;
+          case 'D' :
+      		set_up_rh2();
+      		new_board_rh(g);
+            	break;
+      }
       while (game_over_hr(g) == false) {
         printf("Selectionnez une piece.\n");
         scanf("%d", &p_choix);
         p = p_choix;
-        printf("Vous avez selectionnez %d.\n Proposez une direction: LEFT : L, UP : U, RIGHT : R, DOWN D\n", p);
+        printf("\nVous avez selectionnez %d.\n\nProposez une direction: LEFT : L, UP : U, RIGHT : R, DOWN D\n", p);
         scanf("%s", &direction_choix);
         direction = direction_choix;
         switch(direction) {
@@ -236,33 +286,38 @@ int main() {
             break;
         }
         while ((direction != RIGHT && direction != UP && direction != DOWN && direction != LEFT) || !can_move(pieces[p], direction)) {
-          printf("Direction invalide.\n Proposez une direction: LEFT, UP, RIGHT, DOWN\n");
-          scanf("%s", &direction_choix); 
-          direction = direction_choix;
-          switch(direction) {
-          case 'U' :
-            direction = UP;
-            break;
-          case 'L' :
-            direction = LEFT;
-            break;
-          case 'D' :
-            direction = DOWN;
-            break;
-          case 'R' :
-            direction = RIGHT;
-            break;
-          }
+		if (!can_move(pieces[p], direction))
+          		printf("\nCette pièce ne peut pas aller dans cette direction.\n");
+		if (direction != RIGHT && direction != UP && direction != DOWN && direction != LEFT)
+			printf("\nDirection invalide !");
+        	printf("\nProposez une direction: LEFT, UP, RIGHT, DOWN\n");
+        	scanf("%s", &direction_choix); 
+        	direction = direction_choix;
+        	switch(direction) {
+          		case 'U' :
+            			direction = UP;
+           			break;
+          		case 'L' :
+            			direction = LEFT;
+            			break;
+          		case 'D' :
+            			direction = DOWN;
+            			break;
+         		 case 'R' :
+            			direction = RIGHT;
+            			break;
+          	}
         }
         printf("Proposez une distance à parcourir.\n");
         scanf("%d", &distance);
         while (play_move(g, p, direction, distance, width, height) == false) {
-          printf("Distance invalide. Proposez une distance à parcourir.\n");
+          printf("Proposez une distance à parcourir.\n");
           scanf("%d", &distance);
         }
+	printf("\e[2J\e[H");//clean the shell
         new_board_rh(g);
         
-        //get_nb_moves(g)+=1;
+        nb_moves+=1;
         }
         if (game_over_hr(g) == true) {
           printf("Vous avez fini en %d coups. Bravo ! \n", nb_moves);
@@ -290,10 +345,15 @@ int main() {
          else{
            delete_game(g);
          }
-       }
+       
        
        */
     
       //free(g);
    }
 }
+
+
+
+
+

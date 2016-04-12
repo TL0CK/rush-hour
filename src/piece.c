@@ -140,163 +140,36 @@ bool intersect(cpiece A , cpiece B ){
         return false;
         }
 
-
-
-
-/*
-	if (is_horizontal(A) && !is_horizontal(B)){
-	  for (int j = get_x(A) ; j < get_x(A) + get_width(A)  ; j++){
-	    for (int k = get_y(B) ; k < get_y(B) + get_height(B) ; k++){
-	      if (j + get_y(A)*6 == k*6 + get_x(B)){
-	        return true;
-	      }
+	if (!is_horizontal(A) && !is_horizontal(B)){
+ 	  if (get_x(A) != get_x(B)){
+	    return false;
+	  }
+	  for (int i = get_y(A) ; i <= get_y(A) + get_height(A)  ; i++){
+	    if ( i == get_y(B) ) {
+	      return true;
 	    }
 	  }
-	}
-	
-	if(is_horizontal(B) && !is_horizontal(A)){
-	 for (int j = get_x(B) ; j < get_x(B) + get_width(B) - 1 ; j++){
-	    for (int k = get_y(A) ; k < get_y(A) + get_height(A)-1 ; k++){
-	      if (j + get_y(B)*6 == k*6 + get_x(A)){
-	        return true;
-	      }
-	    }
-	  }
-	}
-	return false;
-*/
-/*
-
-
-A: (x1, y1)
-B: (x2, y2) 
-C: (x3, y3) 
-D: (x4, y4) 
-
-
-	int x1 = get_x(A);
-	int y1 = get_y(A);
-	int x2 = x1 + get_width(A) -1;
-	int y2 = y1 + get_height(A) -1;
-	int x3 = get_x(B);
-	int y3 = get_y(B);
-	int x4 = x2 - get_width(B) -1;
-	int y4 = y2 + get_height(B) -1;
-	
-	
-	float a1;
-	float b1;
-	float a2;
-	float b2;
-	
-	
-	y1 = a1 * x1 + b1
-	y2 = a1 * x2 + b1
-	y3 = a2 * x3 + b2
-	y4 = a2 * x4 + b2
-	
-	
-	if (x1 == x2){
-	 a1 = (y2 - y1);
-	}
-	
-	if (x4==x3){
-	 a2 = (y4 - y3);
-	}
-	
-	if (x1!=x2 && x3!=x4){
-	  a1 = (y2 - y1) / (x2 - x1);
-	  a2 = (y4 - y3) / (x4 - x3);
-	}
-	
-	b1 = y1 - (a1 * x1);
-	b2 = y3 - (a2 * x3);
-
-	if (a1 == a2){
-	  if (y1 != y3){
-	      return false;
-	  }
-	  return true;
-	}
-	
-	int xcommun=(b2-b1)/(a1-a2) ;
-	
-	if (x1 <= xcommun && xcommun <= x2 && x3 <= xcommun && xcommun <= x4){
 	  return false;
 	}
-	return true;
-	
-	*/
-	/*
-		int Ax = get_x(A);
-		int Ay = get_y(A);
-		int Bx = Ax + get_width(A) -1;
-		int By = Ay - get_height(A) -1;
-		int Cx = get_x(B);
-		int Cy = get_y(B);
-		int Dx = Bx + get_width(B) -1;
-		int Dy = By - get_height(B) -1;
- 
-		double Sx;
-		double Sy;
- 
-		if(Ax==Bx){
-			if(Cx==Dx) 
-			  return false;
-			else{
-				double pCD = (Cy-Dy)/(Cx-Dx);
-				Sx = Ax;
-				Sy = pCD*(Ax-Cx)+Cy;
-			}
-		}
-		else{
-			if(Cx==Dx){
-				double pAB = (Ay-By)/(Ax-Bx);
-				Sx = Cx;
-				Sy = pAB*(Cx-Ax)+Ay;
-			}
-			else{
-				double pCD = (Cy-Dy)/(Cx-Dx);
-				double pAB = (Ay-By)/(Ax-Bx);
-				double oCD = Cy-pCD*Cx;
-				double oAB = Ay-pAB*Ax;
-				Sx = (oAB-oCD)/(pCD-pAB);
-				Sy = pCD*Sx+oCD;
-			}
-		}
-		if((Sx<Ax && Sx<Bx)|| (Sx>Ax && Sx>Bx) || (Sx<Cx && Sx<Dx) ||(Sx>Cx && Sx>Dx) || (Sy<Ay && Sy<By) ||(Sy>Ay && Sy>By) || (Sy<Cy && Sy<Dy)|(Sy>Cy && Sy>Dy)) 
-		  return false;
-		return true; 
-	*/
-
-
-/*
-
-for (int i=1; i<get_width(p1); ++i) {
-        for (int j=1; j<get_height(p1); ++j) {
-            for (int k=1; k<get_width(p2); ++k) {
-                for (int l=1; l<get_height(p2); ++l) {
-                    if((p1->x)+i == (p2->x)+k && (p1->y)+j == (p2->y)+l)
-                        return true;
-                }
-            }
-        }
-    }
-    return false;
-*/
-/*
-
-  int maxgauche = max(get_x(p1),get_x(p2));
-  int mindroit = min(get_x(p1) + get_width(p1) , get_x(p2) + get_width(p2));
-  int maxbas = max(get_y(p1) ,  get_y(p2));
-  int minhaut = min( get_y(p1) + get_height(p1) , get_y(p2) + get_height(p2));
-
-  if ((maxgauche < mindroit) && (maxbas < minhaut))
-    return true;
-  return false;
-  */
 }
 
+bool intersect_an (cpiece p1 , cpiece p2 ){
+
+ int x1 = get_x(p1);
+ int x2 = get_x(p2);
+ int y1 = get_y(p1);
+ int y2 = get_y(p2);
+ int w1 = get_width(p1)-1;
+ int w2 = get_width(p2)-1;
+ int h1 = get_height(p1)-1;
+ int h2 = get_height(p2)-1;
+
+
+ 
+ if (x1+w1<x2 || x2+w2<x1 || y1 +h1 < y2 || y2+h2 < y1)
+	return false;
+ return true;
+}
 
 // Return the x of the piece p
 int get_x(cpiece p){
