@@ -1,10 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #include "main_jeu.c"
 
-int solveur(game g){
+int solveur(game g , int piece_num){
+	for (int i = 1 ; i <= distance ; i++){
+         	move_piece(piece_num, RIGHT , 1);
+    		for (int j = 0 ; j < game_nb_pieces(g) ; j++){
+     			if (intersect(piecetest,g->pieces[j])){ 
+       				if (piece_num !=j){
+					
+
   for (int i = 0; i < 93; ++i){
     for (int num_piece = 0; num_piece < game_nb_pieces(g); ++num_piece){
       for (int dir = 0; dir <= 3; ++dir){
@@ -31,4 +37,10 @@ int solveur(game g){
   }
   printf("Rien");
   return 0;
+}
+
+void main (){
+
+
+
 }
