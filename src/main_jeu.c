@@ -135,9 +135,9 @@ void new_board_a(game g) {
 	free(game_board);
 }
 
-/*void free_board(game g , int* game_board) {
+void free_board(game g , int* game_board) {
 	free(game_board);
-}*/
+}
 
 
 int main() {
@@ -149,6 +149,7 @@ int main() {
 	int distance = 0 , width = 6 , height = 6 ,nb_moves = 0;
 	char lvl_choice , lvl;
 	bool fin_jeu = false;
+	int* game_board = NULL;
 
 	while (fin_jeu == false) {
 		printf("\e[2J\e[H");//clean the shell
@@ -222,7 +223,7 @@ int main() {
 				}
 				printf("\e[2J\e[H");//clean the shell
 				new_board_a(g);
-
+				free_board(g, game_board);
 				nb_moves+=1;
 			}
 			if (game_over_hr(g) == true) {
@@ -315,6 +316,8 @@ int main() {
 				printf("\e[2J\e[H");//clean the shell
 				new_board_rh(g);
 				nb_moves+=1;
+				free_board(g, game_board);
+				
 				
 			}
 			if (game_over_hr(g) == true) {
