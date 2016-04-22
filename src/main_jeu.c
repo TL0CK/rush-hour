@@ -90,6 +90,7 @@ void new_board_rh(game g) {
 		}
 		printf("+\n");
 	}
+	free(game_board);
 }
 
 void new_board_a(game g) {
@@ -131,6 +132,7 @@ void new_board_a(game g) {
 		}
 		printf("+\n");
 	}
+	free(game_board);
 }
 
 /*void free_board(game g , int* game_board) {
@@ -317,8 +319,8 @@ int main() {
 			}
 			if (game_over_hr(g) == true) {
 				printf("Vous avez fini en %d coups. Bravo ! \n", nb_moves);
-				free(g);
-				solve(g);
+				free_game(g);
+				//solve(g);
 				return EXIT_SUCCESS;
 			}
 		}

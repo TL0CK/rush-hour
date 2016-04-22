@@ -282,3 +282,11 @@ int solveur_rh(game g , int piece_num , int* nb_moves){
 }
 */
 
+
+
+void free_game(game g){
+    for (int i=0;i<g->nb_pieces;i++)
+        delete_piece(g->pieces[i]);
+    free(g);
+}
+
