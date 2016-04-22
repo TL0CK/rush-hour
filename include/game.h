@@ -117,4 +117,6 @@ int game_height(cgame g);
  * @param y-coor of the square
  */
 int game_square_piece (game g, int x, int y);
+
+//int solveur_rh(game g , int piece_num, int* nb_moves);
 #endif

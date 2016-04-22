@@ -16,6 +16,14 @@ piece.h
 stdbool.h
 -
 
+../include/solveur.h
+stdbool.h
+-
+piece.h
+../include/piece.h
+game.h
+../include/game.h
+
 /home/valentin/Documents/rush-hour/rush-hour/src/game.c
 stdio.h
 -
@@ -35,4 +43,18 @@ stdio.h
 -
 piece.h
 /home/valentin/Documents/rush-hour/rush-hour/src/piece.h
+
+/home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+solveur.h
+/home/valentin/Documents/rush-hour/rush-hour/src/solveur.h
+piece.h
+/home/valentin/Documents/rush-hour/rush-hour/src/piece.h
+game.h
+/home/valentin/Documents/rush-hour/rush-hour/src/game.h
 

@@ -106,6 +106,7 @@ bool game_over_hr(cgame g) {
 cpiece game_piece(cgame g, int piece_num) {
 	return g->pieces[piece_num];
 }
+
 /*
 
    //Find the piece_num in the game's board of g
@@ -127,6 +128,7 @@ int conversion_y (piece p , int width , int height){
   return j_conversion;
 }
  */
+
 bool play_move(game g , int piece_num, dir d , int distance , int width , int height) {
 
 	piece piecetest = new_piece_rh( get_x(g->pieces[piece_num]), get_y(g->pieces[piece_num]), is_small(g->pieces[piece_num]) , is_horizontal(g->pieces[piece_num]));
@@ -228,4 +230,55 @@ bool play_move_an(game g , int piece_num, dir d , int distance , int width , int
 	return true;
 }
 
+
+/*
+int solveur_rh(game g , int piece_num , int* nb_moves){
+
+	piece piecetest = new_piece_rh( get_x(g->pieces[piece_num]), get_y(g->pieces[piece_num]), is_small(g->pieces[piece_num]) , is_horizontal(g->pieces[piece_num]));
+
+	if(piece_num == 0){
+		for (int i = 1 ; i <= 4 ; i++){
+			move_piece(piecetest, RIGHT, 1);
+			for (int j = 0 ; j < game_nb_pieces(g) ; j++){
+				if (intersect(piecetest,g->pieces[j])){ 
+					if (piece_num !=j){
+						solveur_rh(g , j , nb_moves);
+					}
+				}
+			}
+			*nb_moves+=1;
+			int test = &nb_moves;
+			return test;
+		}
+	}
+
+	else{
+		if(!is_horizontal(g->pieces[piece_num])){
+			if(play_move(g , piece_num , UP , 1 , 6 ,6)==false){
+				move_piece(piecetest, UP, 1);
+				for (int j = 0 ; j < game_nb_pieces(g) ; j++){
+					if (intersect(piecetest,g->pieces[j])){ 
+						if (piece_num !=j){
+							solveur_rh(g , j,nb_moves);
+						}
+					}	
+				}
+			}
+			*nb_moves+=1;
+			solveur_rh(g , 0 ,nb_moves);
+		}
+		else{
+			move_piece(piecetest, RIGHT, 1);
+			for (int j = 0 ; j < game_nb_pieces(g) ; j++){
+				if (intersect(piecetest,g->pieces[j])){ 
+					if (piece_num !=j){
+						solveur_rh(g , j, nb_moves);
+					}
+				}
+			}
+			*nb_moves+=1;
+		}
+	}
+}
+*/
 

@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main_jeu.dir/src/main_jeu.c.o"
   "CMakeFiles/main_jeu.dir/src/game.c.o"
   "CMakeFiles/main_jeu.dir/src/piece.c.o"
+  "CMakeFiles/main_jeu.dir/src/solveurV3.c.o"
   "main_jeu.pdb"
   "main_jeu"
 )

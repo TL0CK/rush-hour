@@ -7,8 +7,14 @@ CMakeFiles/main_jeu.dir/src/game.c.o: ../src/game.c
 
 CMakeFiles/main_jeu.dir/src/main_jeu.c.o: ../include/game.h
 CMakeFiles/main_jeu.dir/src/main_jeu.c.o: ../include/piece.h
+CMakeFiles/main_jeu.dir/src/main_jeu.c.o: ../include/solveur.h
 CMakeFiles/main_jeu.dir/src/main_jeu.c.o: ../src/main_jeu.c
 
 CMakeFiles/main_jeu.dir/src/piece.c.o: ../include/piece.h
 CMakeFiles/main_jeu.dir/src/piece.c.o: ../src/piece.c
+
+CMakeFiles/main_jeu.dir/src/solveurV3.c.o: ../include/game.h
+CMakeFiles/main_jeu.dir/src/solveurV3.c.o: ../include/piece.h
+CMakeFiles/main_jeu.dir/src/solveurV3.c.o: ../include/solveur.h
+CMakeFiles/main_jeu.dir/src/solveurV3.c.o: ../src/solveurV3.c
 

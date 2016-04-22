@@ -8,3 +8,8 @@ CMakeFiles/game.dir/src/game.c.o: ../src/game.c
 CMakeFiles/game.dir/src/piece.c.o: ../include/piece.h
 CMakeFiles/game.dir/src/piece.c.o: ../src/piece.c
 
+CMakeFiles/game.dir/src/solveurV3.c.o: ../include/game.h
+CMakeFiles/game.dir/src/solveurV3.c.o: ../include/piece.h
+CMakeFiles/game.dir/src/solveurV3.c.o: ../include/solveur.h
+CMakeFiles/game.dir/src/solveurV3.c.o: ../src/solveurV3.c
+

@@ -8,3 +8,8 @@ CMakeFiles/game.dir/src/game.c.o
 CMakeFiles/game.dir/src/piece.c.o
  ../include/piece.h
  /home/valentin/Documents/rush-hour/rush-hour/src/piece.c
+CMakeFiles/game.dir/src/solveurV3.c.o
+ ../include/game.h
+ ../include/piece.h
+ ../include/solveur.h
+ /home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c

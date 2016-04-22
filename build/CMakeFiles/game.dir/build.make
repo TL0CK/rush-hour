@@ -105,19 +105,45 @@ CMakeFiles/game.dir/src/piece.c.o.provides: CMakeFiles/game.dir/src/piece.c.o.re
 CMakeFiles/game.dir/src/piece.c.o.provides.build: CMakeFiles/game.dir/src/piece.c.o
 
 
+CMakeFiles/game.dir/src/solveurV3.c.o: CMakeFiles/game.dir/flags.make
+CMakeFiles/game.dir/src/solveurV3.c.o: ../src/solveurV3.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/game.dir/src/solveurV3.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/game.dir/src/solveurV3.c.o   -c /home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c
+
+CMakeFiles/game.dir/src/solveurV3.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/game.dir/src/solveurV3.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c > CMakeFiles/game.dir/src/solveurV3.c.i
+
+CMakeFiles/game.dir/src/solveurV3.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/game.dir/src/solveurV3.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c -o CMakeFiles/game.dir/src/solveurV3.c.s
+
+CMakeFiles/game.dir/src/solveurV3.c.o.requires:
+
+.PHONY : CMakeFiles/game.dir/src/solveurV3.c.o.requires
+
+CMakeFiles/game.dir/src/solveurV3.c.o.provides: CMakeFiles/game.dir/src/solveurV3.c.o.requires
+	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/solveurV3.c.o.provides.build
+.PHONY : CMakeFiles/game.dir/src/solveurV3.c.o.provides
+
+CMakeFiles/game.dir/src/solveurV3.c.o.provides.build: CMakeFiles/game.dir/src/solveurV3.c.o
+
+
 # Object files for target game
 game_OBJECTS = \
 "CMakeFiles/game.dir/src/game.c.o" \
-"CMakeFiles/game.dir/src/piece.c.o"
+"CMakeFiles/game.dir/src/piece.c.o" \
+"CMakeFiles/game.dir/src/solveurV3.c.o"
 
 # External object files for target game
 game_EXTERNAL_OBJECTS =
 
 libgame.a: CMakeFiles/game.dir/src/game.c.o
 libgame.a: CMakeFiles/game.dir/src/piece.c.o
+libgame.a: CMakeFiles/game.dir/src/solveurV3.c.o
 libgame.a: CMakeFiles/game.dir/build.make
 libgame.a: CMakeFiles/game.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library libgame.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library libgame.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/game.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/game.dir/link.txt --verbose=$(VERBOSE)
 
@@ -128,6 +154,7 @@ CMakeFiles/game.dir/build: libgame.a
 
 CMakeFiles/game.dir/requires: CMakeFiles/game.dir/src/game.c.o.requires
 CMakeFiles/game.dir/requires: CMakeFiles/game.dir/src/piece.c.o.requires
+CMakeFiles/game.dir/requires: CMakeFiles/game.dir/src/solveurV3.c.o.requires
 
 .PHONY : CMakeFiles/game.dir/requires
 

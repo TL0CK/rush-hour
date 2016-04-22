@@ -280,6 +280,36 @@ src/piece.c.s:
 	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/piece.c.s
 .PHONY : src/piece.c.s
 
+src/solveurV3.o: src/solveurV3.c.o
+
+.PHONY : src/solveurV3.o
+
+# target to build an object file
+src/solveurV3.c.o:
+	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/solveurV3.c.o
+	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/solveurV3.c.o
+.PHONY : src/solveurV3.c.o
+
+src/solveurV3.i: src/solveurV3.c.i
+
+.PHONY : src/solveurV3.i
+
+# target to preprocess a source file
+src/solveurV3.c.i:
+	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/solveurV3.c.i
+	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/solveurV3.c.i
+.PHONY : src/solveurV3.c.i
+
+src/solveurV3.s: src/solveurV3.c.s
+
+.PHONY : src/solveurV3.s
+
+# target to generate assembly for a file
+src/solveurV3.c.s:
+	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/solveurV3.c.s
+	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/solveurV3.c.s
+.PHONY : src/solveurV3.c.s
+
 test/test_piece1.o: test/test_piece1.c.o
 
 .PHONY : test/test_piece1.o
@@ -331,6 +361,9 @@ help:
 	@echo "... src/piece.o"
 	@echo "... src/piece.i"
 	@echo "... src/piece.s"
+	@echo "... src/solveurV3.o"
+	@echo "... src/solveurV3.i"
+	@echo "... src/solveurV3.s"
 	@echo "... test/test_piece1.o"
 	@echo "... test/test_piece1.i"
 	@echo "... test/test_piece1.s"

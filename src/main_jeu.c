@@ -5,6 +5,7 @@
 
 #include "game.h"
 #include "piece.h"
+#include "solveur.h"
 
 
 #define TAILLE 6
@@ -132,13 +133,9 @@ void new_board_a(game g) {
 	}
 }
 
-void free_board(game g , int** game_board) {
-	int height = game_height(g);
-	for (int i = 0 ; i < height ; i ++) {
-		free(game_board[i]);
-	}
-	free (game_board);
-}
+/*void free_board(game g , int* game_board) {
+	free(game_board);
+}*/
 
 
 int main() {
@@ -228,6 +225,7 @@ int main() {
 			}
 			if (game_over_hr(g) == true) {
 				printf("Vous avez fini en %d coups. Bravo ! \n", nb_moves);
+				free(g);
 				return EXIT_SUCCESS;
 			}
 		}
@@ -314,11 +312,13 @@ int main() {
 				}
 				printf("\e[2J\e[H");//clean the shell
 				new_board_rh(g);
-
 				nb_moves+=1;
+				
 			}
 			if (game_over_hr(g) == true) {
 				printf("Vous avez fini en %d coups. Bravo ! \n", nb_moves);
+				free(g);
+				solve(g);
 				return EXIT_SUCCESS;
 			}
 		}

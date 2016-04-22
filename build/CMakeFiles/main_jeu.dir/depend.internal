@@ -8,7 +8,13 @@ CMakeFiles/main_jeu.dir/src/game.c.o
 CMakeFiles/main_jeu.dir/src/main_jeu.c.o
  ../include/game.h
  ../include/piece.h
+ ../include/solveur.h
  /home/valentin/Documents/rush-hour/rush-hour/src/main_jeu.c
 CMakeFiles/main_jeu.dir/src/piece.c.o
  ../include/piece.h
  /home/valentin/Documents/rush-hour/rush-hour/src/piece.c
+CMakeFiles/main_jeu.dir/src/solveurV3.c.o
+ ../include/game.h
+ ../include/piece.h
+ ../include/solveur.h
+ /home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c

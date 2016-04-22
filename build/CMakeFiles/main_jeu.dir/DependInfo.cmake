@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/valentin/Documents/rush-hour/rush-hour/src/game.c" "/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/main_jeu.dir/src/game.c.o"
   "/home/valentin/Documents/rush-hour/rush-hour/src/main_jeu.c" "/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/main_jeu.dir/src/main_jeu.c.o"
   "/home/valentin/Documents/rush-hour/rush-hour/src/piece.c" "/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/main_jeu.dir/src/piece.c.o"
+  "/home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c" "/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/main_jeu.dir/src/solveurV3.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

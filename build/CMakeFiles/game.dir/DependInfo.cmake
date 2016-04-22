@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/home/valentin/Documents/rush-hour/rush-hour/src/game.c" "/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/game.dir/src/game.c.o"
   "/home/valentin/Documents/rush-hour/rush-hour/src/piece.c" "/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/game.dir/src/piece.c.o"
+  "/home/valentin/Documents/rush-hour/rush-hour/src/solveurV3.c" "/home/valentin/Documents/rush-hour/rush-hour/build/CMakeFiles/game.dir/src/solveurV3.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
