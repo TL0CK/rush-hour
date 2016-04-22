@@ -111,7 +111,6 @@ void new_board_a(game g) {
 		for (int j = 0 ; j < get_height(p) ; j++){
 			for (int k = 0 ; k < get_width(p) ; k++){
 				game_board[(get_x(p)+k)+(height-1-get_y(p)-j)*height] = i;
-				//game_board[get_x(p)+(height*get_y(p)+j+k*height)] = i;
 			}
 		}
 	}
@@ -138,7 +137,6 @@ void new_board_a(game g) {
 void free_board(game g , int* game_board) {
 	free(game_board);
 }
-
 
 int main() {
 
@@ -223,8 +221,8 @@ int main() {
 				}
 				printf("\e[2J\e[H");//clean the shell
 				new_board_a(g);
-				free_board(g, game_board);
 				nb_moves+=1;
+				free_board(g, game_board);
 			}
 			if (game_over_hr(g) == true) {
 				printf("Vous avez fini en %d coups. Bravo ! \n", nb_moves);
@@ -327,32 +325,6 @@ int main() {
 				return EXIT_SUCCESS;
 			}
 		}
-		/*
-         while (rejouer != 'O' || rejouer != 'N') {
-           printf("Voulez-vous rejouer? O/N");
-           scanf("%s", &rejouer_choix);
-           rejouer = rejouer_choix;
-         }
-         if (rejouer == 'O') {
-           fin_jeu = false;
-           delete_game(g);
-           set_up();
-           new_board(g);
-           choix = -1;
-           p = -1;
-           direction = 'n';
-           distance = 0;
-           width = 6;
-           height = 6;
-         } 
-         else{
-           delete_game(g);
-         }
-
-
-		 */
-
-		//free(g);
 	}
 }
 

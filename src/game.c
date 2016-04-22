@@ -181,9 +181,7 @@ bool play_move(game g , int piece_num, dir d , int distance , int width , int he
 		}
 	}
 	move_piece(g->pieces[piece_num] , d , distance);
-
 	free(piecetest);
-
 	return true;
 }
 
@@ -230,7 +228,6 @@ bool play_move_an(game g , int piece_num, dir d , int distance , int width , int
 		}
 	}
 	move_piece(g->pieces[piece_num], d, distance);
-
 	free(piecetest);
 	return true;
 }
