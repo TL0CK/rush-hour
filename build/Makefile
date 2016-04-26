@@ -168,17 +168,17 @@ game/fast:
 .PHONY : game/fast
 
 #=============================================================================
-# Target rules for targets named main_jeu
+# Target rules for targets named main_game
 
 # Build rule for target.
-main_jeu: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 main_jeu
-.PHONY : main_jeu
+main_game: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main_game
+.PHONY : main_game
 
 # fast build rule for target.
-main_jeu/fast:
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/build
-.PHONY : main_jeu/fast
+main_game/fast:
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/build
+.PHONY : main_game/fast
 
 #=============================================================================
 # Target rules for targets named test_piece
@@ -200,7 +200,7 @@ src/game.o: src/game.c.o
 # target to build an object file
 src/game.c.o:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/game.c.o
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/game.c.o
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/game.c.o
 .PHONY : src/game.c.o
 
 src/game.i: src/game.c.i
@@ -210,7 +210,7 @@ src/game.i: src/game.c.i
 # target to preprocess a source file
 src/game.c.i:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/game.c.i
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/game.c.i
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/game.c.i
 .PHONY : src/game.c.i
 
 src/game.s: src/game.c.s
@@ -220,35 +220,35 @@ src/game.s: src/game.c.s
 # target to generate assembly for a file
 src/game.c.s:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/game.c.s
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/game.c.s
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/game.c.s
 .PHONY : src/game.c.s
 
-src/main_jeu.o: src/main_jeu.c.o
+src/main_game.o: src/main_game.c.o
 
-.PHONY : src/main_jeu.o
+.PHONY : src/main_game.o
 
 # target to build an object file
-src/main_jeu.c.o:
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/main_jeu.c.o
-.PHONY : src/main_jeu.c.o
+src/main_game.c.o:
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/main_game.c.o
+.PHONY : src/main_game.c.o
 
-src/main_jeu.i: src/main_jeu.c.i
+src/main_game.i: src/main_game.c.i
 
-.PHONY : src/main_jeu.i
+.PHONY : src/main_game.i
 
 # target to preprocess a source file
-src/main_jeu.c.i:
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/main_jeu.c.i
-.PHONY : src/main_jeu.c.i
+src/main_game.c.i:
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/main_game.c.i
+.PHONY : src/main_game.c.i
 
-src/main_jeu.s: src/main_jeu.c.s
+src/main_game.s: src/main_game.c.s
 
-.PHONY : src/main_jeu.s
+.PHONY : src/main_game.s
 
 # target to generate assembly for a file
-src/main_jeu.c.s:
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/main_jeu.c.s
-.PHONY : src/main_jeu.c.s
+src/main_game.c.s:
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/main_game.c.s
+.PHONY : src/main_game.c.s
 
 src/piece.o: src/piece.c.o
 
@@ -257,7 +257,7 @@ src/piece.o: src/piece.c.o
 # target to build an object file
 src/piece.c.o:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/piece.c.o
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/piece.c.o
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/piece.c.o
 .PHONY : src/piece.c.o
 
 src/piece.i: src/piece.c.i
@@ -267,7 +267,7 @@ src/piece.i: src/piece.c.i
 # target to preprocess a source file
 src/piece.c.i:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/piece.c.i
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/piece.c.i
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/piece.c.i
 .PHONY : src/piece.c.i
 
 src/piece.s: src/piece.c.s
@@ -277,7 +277,7 @@ src/piece.s: src/piece.c.s
 # target to generate assembly for a file
 src/piece.c.s:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/piece.c.s
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/piece.c.s
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/piece.c.s
 .PHONY : src/piece.c.s
 
 src/solveurV3.o: src/solveurV3.c.o
@@ -287,7 +287,7 @@ src/solveurV3.o: src/solveurV3.c.o
 # target to build an object file
 src/solveurV3.c.o:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/solveurV3.c.o
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/solveurV3.c.o
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/solveurV3.c.o
 .PHONY : src/solveurV3.c.o
 
 src/solveurV3.i: src/solveurV3.c.i
@@ -297,7 +297,7 @@ src/solveurV3.i: src/solveurV3.c.i
 # target to preprocess a source file
 src/solveurV3.c.i:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/solveurV3.c.i
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/solveurV3.c.i
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/solveurV3.c.i
 .PHONY : src/solveurV3.c.i
 
 src/solveurV3.s: src/solveurV3.c.s
@@ -307,7 +307,7 @@ src/solveurV3.s: src/solveurV3.c.s
 # target to generate assembly for a file
 src/solveurV3.c.s:
 	$(MAKE) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/solveurV3.c.s
-	$(MAKE) -f CMakeFiles/main_jeu.dir/build.make CMakeFiles/main_jeu.dir/src/solveurV3.c.s
+	$(MAKE) -f CMakeFiles/main_game.dir/build.make CMakeFiles/main_game.dir/src/solveurV3.c.s
 .PHONY : src/solveurV3.c.s
 
 test/test_piece1.o: test/test_piece1.c.o
@@ -347,7 +347,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... main_jeu"
+	@echo "... main_game"
 	@echo "... test_piece"
 	@echo "... install/local"
 	@echo "... install/strip"
@@ -355,9 +355,9 @@ help:
 	@echo "... src/game.o"
 	@echo "... src/game.i"
 	@echo "... src/game.s"
-	@echo "... src/main_jeu.o"
-	@echo "... src/main_jeu.i"
-	@echo "... src/main_jeu.s"
+	@echo "... src/main_game.o"
+	@echo "... src/main_game.i"
+	@echo "... src/main_game.s"
 	@echo "... src/piece.o"
 	@echo "... src/piece.i"
 	@echo "... src/piece.s"

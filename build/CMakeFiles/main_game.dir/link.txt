@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/main_game.dir/src/main_game.c.o CMakeFiles/main_game.dir/src/game.c.o CMakeFiles/main_game.dir/src/piece.c.o CMakeFiles/main_game.dir/src/solveurV3.c.o  -o main_game -rdynamic 

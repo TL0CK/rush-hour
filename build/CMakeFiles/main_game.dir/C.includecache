@@ -36,7 +36,7 @@ piece.h
 game.h
 /home/valentin/Documents/rush-hour/rush-hour/src/game.h
 
-/home/valentin/Documents/rush-hour/rush-hour/src/main_jeu.c
+/home/valentin/Documents/rush-hour/rush-hour/src/main_game.c
 stdlib.h
 -
 time.h
