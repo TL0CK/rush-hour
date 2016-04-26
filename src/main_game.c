@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -119,7 +118,6 @@ void new_board_a(game g) {
 		for (int j = 0 ; j < get_height(p) ; j++){
 			for (int k = 0 ; k < get_width(p) ; k++){
 				game_board[(get_x(p)+k)+(height-1-get_y(p)-j)*height] = i;
-				//game_board[get_x(p)+(height*get_y(p)+j+k*height)] = i;
 			}
 		}
 	}

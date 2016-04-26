@@ -39,8 +39,6 @@ game.h
 /home/valentin/Documents/rush-hour/rush-hour/src/main_game.c
 stdlib.h
 -
-time.h
--
 stdio.h
 -
 stdbool.h
