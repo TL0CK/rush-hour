@@ -151,6 +151,7 @@ bool intersect(cpiece A , cpiece B ){
 		}
 		return false;
 	}
+	return false;
 }
 
 bool intersect_an (cpiece p1 , cpiece p2 ){
