@@ -23,13 +23,21 @@ void set_up_rh() {
 
 void set_up_rh2() {
 	pieces[0] = new_piece_rh(0, 2, true, true);
+	pieces[1] = new_piece_rh(0, 3, false, true);
+	pieces[2] = new_piece_rh(2, 0, false, false);
+	pieces[3] = new_piece_rh(3, 3, true, false);
+	pieces[4] = new_piece_rh(5, 3, true, false);
+}
+
+void set_up_rh3() {
+	pieces[0] = new_piece_rh(0, 2, true, true);
 	pieces[1] = new_piece_rh(2, 1, false, false);
 	pieces[2] = new_piece_rh(1, 4, true, true);
 	pieces[3] = new_piece_rh(3, 2, true, false);
 	pieces[4] = new_piece_rh(3, 1, false, true);
 }
 
-void set_up_rh3() {
+void set_up_rh4() {
 	pieces[0] = new_piece_rh(0, 2, true, true);
 	pieces[1] = new_piece_rh(0, 3, false, false);
 	pieces[2] = new_piece_rh(3, 0, false, false);
@@ -258,7 +266,7 @@ int main() {
 				new_board_rh(g);
 				break;
 			case 'D' :
-				set_up_rh2();
+				set_up_rh4();
 				new_board_rh(g);
 				break;
 			}

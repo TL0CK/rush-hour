@@ -32,11 +32,11 @@ tree_solve create_tree(game g){		//create a new tree
 	return t;
 }
 
-bool has_child(tree_solve t){
+bool has_child(tree_solve t){			//True if the tree have child 		
 	return (t->indice_children > -1);
 }
 
-int get_nb_child(tree_solve t){
+int get_nb_child(tree_solve t){			//return the number of child
 	return t->indice_children+1;
 }
 
@@ -44,7 +44,7 @@ tree_solve get_child(tree_solve t, int i){
 	return t->children[i];
 }
 
-void add_child(tree_solve t, game g){
+void add_child(tree_solve t, game g){		//Add a child in the tree
 	tree_solve tmp = create_tree(g);
 	t->indice_children += 1;
 	t->children[t->indice_children] = tmp;
@@ -57,7 +57,7 @@ game solve_game(tree_solve t, int indice){
 	game gU = new_game_hr(0,NULL);
 	game gD = new_game_hr(0,NULL);
 	copy_game(get_base(t), g);
-	for (int p = 0; p < game_nb_pieces(g); ++p){
+	for (int p = 0; p < game_nb_pieces(g); ++p){ 			// Make every move if they are possible for each pieces and return a child for each mouvement done
 		copy_game(g, gL);
 		copy_game(g, gR);
 		copy_game(g, gU);
